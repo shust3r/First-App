@@ -12,4 +12,6 @@ public class CardForUpdateDto
     public string? Description { get; set; }
 
     public Priority Priority { get; set; }
+
+    public int ListId { get; set; }
 }

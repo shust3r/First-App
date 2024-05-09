@@ -124,6 +124,7 @@ public class CardsController : ControllerBase
 
         _mapper.Map(cardToPatch, card);
         card.ModifiedDate = DateTime.UtcNow;
+        card.ListId = cardToPatch.ListId;
         await _cardRepo.Update(card);
 
         return NoContent();
