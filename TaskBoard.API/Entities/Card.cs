@@ -17,13 +17,16 @@ public class Card
     public string Description { get; set; }
 
     [Required]
-    public DateTime ModifiedDate { get; set; }
+    public DateTime DueDate { get; set; }
 
     [Required]
     public int Priority { get; set; }
 
     [ForeignKey("ListId")]
     public int ListId { get; set; }
+
+    public ICollection<Activity> Activities { get; set; }
+        = new List<Activity>();
 
     public Card(string name, string description)
     {

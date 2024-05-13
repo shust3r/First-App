@@ -13,4 +13,6 @@ public class CardForCreationDto
 
     [Required]
     public Priority Priority { get; set; }
+
+    public DateTime? DueDate { get; set; }
 }

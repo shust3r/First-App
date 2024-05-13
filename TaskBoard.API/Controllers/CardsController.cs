@@ -77,7 +77,7 @@ public class CardsController : ControllerBase
             Name = card.Name,
             Description = card.Description == null ? "Task description should be unambiguous, accurate, factual." : card.Description,
             Priority = card.Priority,
-            CreatedOrModifiedDate = DateTime.UtcNow,
+            DueDate = card.DueDate == null ? DateTime.UtcNow.AddDays(1) : (DateTime)card.DueDate,
             ListId = listId
         };
 
@@ -123,7 +123,7 @@ public class CardsController : ControllerBase
         }
 
         _mapper.Map(cardToPatch, card);
-        card.ModifiedDate = DateTime.UtcNow;
+        card.DueDate = DateTime.UtcNow;
         card.ListId = cardToPatch.ListId;
         await _cardRepo.Update(card);
 

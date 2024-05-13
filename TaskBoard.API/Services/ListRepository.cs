@@ -17,6 +17,7 @@ public class ListRepository : IListRepository
     {
         var all = await _context.Lists
             .Include(l => l.Cards)
+            .ThenInclude(c => c.Activities)
             .ToListAsync();
 
         return all;
@@ -26,6 +27,7 @@ public class ListRepository : IListRepository
     {
         var list = await _context.Lists
             .Include(l => l.Cards)
+            .ThenInclude(c => c.Activities)
             .Where(l => l.Id == listId)
             .FirstOrDefaultAsync();
 

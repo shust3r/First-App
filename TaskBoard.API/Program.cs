@@ -15,8 +15,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<TaskBoardContext>();
 
+builder.Services.AddScoped<IBoardRepository, BoardRepository>();
 builder.Services.AddScoped<IListRepository, ListRepository>();
 builder.Services.AddScoped<ICardRepository, CardRepository>();
+builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
+builder.Services.AddScoped<ActivityService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

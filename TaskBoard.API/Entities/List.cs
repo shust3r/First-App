@@ -11,7 +11,10 @@ public class List
 
     [Required]
     [MaxLength(50)]
-    public string Name { get; set; }
+    public string Name { get; set; }    
+
+    [ForeignKey("BoardId")]
+    public int BoardId { get; set; }
 
     public ICollection<Card> Cards { get; set; }
         = new List<Card>();
