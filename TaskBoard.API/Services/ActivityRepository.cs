@@ -21,18 +21,26 @@ public class ActivityRepository : IActivityRepository
         return all;
     }
 
-    public async Task<Activity> AddAsync(Activity activity, int cardId)
+    public async Task<IEnumerable<Activity>> GeByCardIdAsync(int cardId)
+    {
+        var all = await _context.Activities
+            .Where(a => a.CardId == cardId)
+            .ToListAsync();
+
+        return all;
+    }
+
+    public async Task AddAsync(Activity activity)
     {
         await _context.Activities.AddAsync(activity);
-        var card = await _context.Cards
-            .Where(c => c.Id == cardId)
-            .FirstOrDefaultAsync();
-        if (card is not null)
-        {
-            card.Activities.Add(activity);
-        }
 
         await _context.SaveChangesAsync();
-        return activity;
+    }
+
+    public async Task AddRange(IEnumerable<Activity> activities)
+    {
+        await _context.Activities.AddRangeAsync(activities);
+
+        await _context.SaveChangesAsync();
     }
 }

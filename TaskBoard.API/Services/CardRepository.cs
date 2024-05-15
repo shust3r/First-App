@@ -7,12 +7,12 @@ namespace TaskBoard.API.Services;
 public class CardRepository : ICardRepository
 {
     private readonly TaskBoardContext _context;
-    private readonly ActivityService _svc;
+    private readonly IActivityRepository _repo;
 
-    public CardRepository(TaskBoardContext context, ActivityService svc)
+    public CardRepository(TaskBoardContext context, IActivityRepository activityRepository)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
-        _svc = svc ?? throw new ArgumentNullException(nameof(svc));
+        _repo = activityRepository ?? throw new ArgumentNullException(nameof(activityRepository));
     }
 
     public async Task<IEnumerable<Card>> GetAllAsync()
@@ -36,11 +36,6 @@ public class CardRepository : ICardRepository
 
     public async Task<Card> AddAsync(Card card)
     {
-        ////Чи достатньо цього
-        //  //чи не треба ще й await _context.Activities.AddAsync(activity);
-
-        //card.Activities.Add(activity);
-
         await _context.Cards.AddAsync(card);
 
         var list = await _context.Lists
@@ -53,21 +48,22 @@ public class CardRepository : ICardRepository
 
         await _context.SaveChangesAsync();
 
-        await _svc.InitActivity(card);
+        var activity = new Activity("added", "", card.Name)
+        {
+            OperationDate = DateTime.UtcNow,
+            CardId = card.Id,
+            ListId = card.ListId
+        };
+
+        await _repo.AddAsync(activity);
 
         return card;
     }
 
     public async Task<Card> Update(Card card)
     {
-        var oldCard = await _context.Cards
-            .Where(c => c.Id == card.Id)
-            .FirstOrDefaultAsync();
-
         _context.Entry(card).State = EntityState.Modified;
         await _context.SaveChangesAsync();
-
-        await _svc.AddUpdateActivity(oldCard!, card);
 
         return card;
     }

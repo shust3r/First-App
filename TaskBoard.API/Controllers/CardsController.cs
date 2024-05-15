@@ -14,14 +14,16 @@ public class CardsController : ControllerBase
 {
     private readonly ICardRepository _cardRepo;
     private readonly IListRepository _listRepo;
+    private readonly ActivityService _activityService;
     private readonly IMapper _mapper;
 
     public CardsController(ICardRepository cardRepo,
         IListRepository listRepo,
-        IMapper mapper)
+        IMapper mapper, ActivityService activityService)
     {
         _cardRepo = cardRepo ?? throw new ArgumentNullException(nameof(cardRepo));
         _listRepo = listRepo ?? throw new ArgumentNullException(nameof(listRepo));
+        _activityService = activityService ?? throw new ArgumentNullException(nameof(activityService));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
@@ -101,12 +103,8 @@ public class CardsController : ControllerBase
         {
             return NotFound();
         }
-
-        var list = await _listRepo.GetByIdAsync(card.ListId);
-        if (list is null)
-        {
-            return NotFound();
-        }
+        
+        await _activityService.AddActivities(card, patchDocument);
 
         var cardToPatch = _mapper.Map<CardForUpdateDto>(card);
 
@@ -123,8 +121,7 @@ public class CardsController : ControllerBase
         }
 
         _mapper.Map(cardToPatch, card);
-        card.DueDate = DateTime.UtcNow;
-        card.ListId = cardToPatch.ListId;
+
         await _cardRepo.Update(card);
 
         return NoContent();

@@ -1,4 +1,6 @@
-﻿using TaskBoard.API.Entities;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using TaskBoard.API.Entities;
+using TaskBoard.API.Models;
 
 namespace TaskBoard.API.Services;
 
@@ -11,75 +13,57 @@ public class ActivityService
         _repo = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
-    public async Task InitActivity(Card card)
-    {
-        var activity = new Activity("added", "", card.Name)
-        {
-            OperationDate = DateTime.UtcNow,
-            CardId = card.Id,
-            ListId = card.ListId
-        };
-
-        await _repo.AddAsync(activity, card.Id);
-    }
-
-    public async Task AddUpdateActivity(Card oldCard, Card newCard)
+    public async Task AddActivities(Card card, JsonPatchDocument<CardForUpdateDto> patchDocument)
     {
         var activities = new List<Activity>();
 
-        if (oldCard.Name != newCard.Name)
+        foreach (var op in patchDocument.Operations)
         {
-            var nameActivity = new Activity("renamed", oldCard.Name, newCard.Name)
+            switch (op.path.ToUpperInvariant())
             {
-                OperationDate = DateTime.UtcNow,
-                CardId = oldCard.Id
-            };
-            activities.Add(nameActivity);
+                case "NAME":
+                    activities.Add(
+                    new Activity("renamed", card.Name, op.value.ToString()!)
+                    {
+                        OperationDate = DateTime.UtcNow,
+                        CardId = card.Id
+                    });
+                    break;
+                case "DESCRIPTION":
+                    activities.Add(
+                    new Activity("changed the description", card.Description, op.value.ToString()!)
+                    {
+                        OperationDate = DateTime.UtcNow,
+                        CardId = card.Id
+                    });
+                    break;
+                case "PRIORITY":
+                    activities.Add(
+                    new Activity("changed the priority", card.Priority.ToString(), op.value.ToString()!)
+                    {
+                        OperationDate = DateTime.UtcNow,
+                        CardId = card.Id
+                    });
+                    break;
+                case "LISTID":
+                    activities.Add(
+                    new Activity("moved", card.ListId.ToString(), op.value.ToString()!)
+                    {
+                        OperationDate = DateTime.UtcNow,
+                        CardId = card.Id
+                    });
+                    break;
+                case "DUEDATE":
+                    activities.Add(
+                    new Activity("changed", card.DueDate.ToString(), op.value.ToString()!)
+                    {
+                        OperationDate = DateTime.UtcNow,
+                        CardId = card.Id
+                    });
+                    break;
+            }
         }
 
-        if (oldCard.Description != newCard.Description)
-        {
-            var descrActivity = new Activity("changed the description", oldCard.Description, newCard.Description)
-            {
-                OperationDate = DateTime.UtcNow,
-                CardId = oldCard.Id
-            };
-            activities.Add(descrActivity);
-        }
-
-        if (oldCard.Priority != newCard.Priority)
-        {
-            var priorAcr = new Activity("changed the priority", oldCard.Priority.ToString(), newCard.Priority.ToString())
-            {
-                OperationDate = DateTime.UtcNow,
-                CardId = oldCard.Id
-            };
-            activities.Add(priorAcr);
-        }
-
-        if (oldCard.ListId != newCard.ListId)
-        {
-            var listAct = new Activity("moved", oldCard.ListId.ToString(), newCard.ListId.ToString())
-            {
-                OperationDate = DateTime.UtcNow,
-                CardId = oldCard.Id
-            };
-            activities.Add(listAct);
-        }
-
-        if (oldCard.DueDate != newCard.DueDate)
-        {
-            var dateAct = new Activity("changed", oldCard.DueDate.ToString(), newCard.DueDate.ToString())
-            {
-                OperationDate = DateTime.UtcNow,
-                CardId = oldCard.Id
-            };
-            activities.Add(dateAct);
-        }
-
-        foreach (var activity in activities)
-        {
-            await _repo.AddAsync(activity, oldCard.Id);
-        }
+        await _repo.AddRange(activities);
     }
 }

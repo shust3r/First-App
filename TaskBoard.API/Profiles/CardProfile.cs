@@ -10,5 +10,6 @@ public class CardProfile : Profile
         CreateMap<Models.CardForCreationDto, Entities.Card>();
         CreateMap<Models.CardForUpdateDto, Entities.Card>();
         CreateMap<Entities.Card, Models.CardForUpdateDto>();
+
     }
 }
