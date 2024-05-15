@@ -1,0 +1,31 @@
+<div class="gridContainer">
+
+    <div *ngFor="let list of lists">
+      <div >
+        <b>{{list.name}} {{list.cards.length}}</b>
+        <input type="button" value="...">
+      </div>
+  
+      <div>
+        <!-- <app-add-new-card-btn></app-add-new-card-btn> -->
+        <app-create-card></app-create-card>
+        
+        <input type="button" value="+ Add new card">
+      </div>
+  
+      <div class="pillar">
+        <app-card [cards]="list.cards" [lists]="lists"></app-card>
+      </div>
+      <!-- <div class="empty pillar" *ngIf="lists.length < 4">
+        <div *ngFor="let item of emptyLists">
+            Тут має бути пустий ліст тільки кнопка Add another list
+        </div>
+      </div> -->
+    </div>
+    
+
+  </div>
+
+<!-- <app-opened-card [isCardOpened]="isCardOpened" [card]="card"
+  [ngStyle]="{'visibility': isCardOpened ? 'visible' : 'hidden'}">
+</app-opened-card> -->

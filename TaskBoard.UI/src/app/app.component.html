@@ -1,52 +1,14 @@
 <div class="flex-container">
-  
+
   <div class="head">
     <h1 class="name"><b>My Task Board</b></h1>
-    <input type="button" class="historyBtn" value="History">
+    <input type="button" (click)="switchHistory()" class="historyBtn" value="History">
   </div>
 
-  <div class="columns">
-      <div *ngFor="let list of lists">
-        <b>{{list.name}}  {{list.cards.length}}</b>
-        <input type="button" value="...">
-      </div>
-  </div>
+  <app-list></app-list>
 
-  <div class="addCarBtns">
-    <div *ngFor="let list of lists">
-      <input type="button" value="+ Add new card">
-    </div>
-  </div>
+</div>
 
-  <div class="gridContainer">
-    
-    <div class="pillar" *ngFor="let index of [0, 1, 2, 3]">
-      
-      <div class="card" *ngFor="let card of lists[index].cards">
-        <b>{{card.name}}</b>
-        <br>
-        <b>{{card.description}}</b>
-        <br>
-        <b>{{card.modifiedDate}}</b>
-        <br>
-        <b>Priority {{card.priority}}</b>
-        
-        <div class="dropdown">
-          <button class="dropbtn">Move To</button>
-          
-          <div class="dropdown-content">
-            <a href="#">{{lists[0].name}}</a>
-            <a href="#">{{lists[1].name}}</a>
-            <a href="#">{{lists[2].name}}</a>
-            <a href="#">{{lists[3].name}}</a>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
+<div class="history">
+  <app-board-history [ngStyle]="{'visibility': hideHistory ? 'hidden' : 'visible'}"></app-board-history>
 </div>

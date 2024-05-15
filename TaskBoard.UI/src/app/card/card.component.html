@@ -1,0 +1,23 @@
+<div class="card" *ngFor="let card of cards">
+
+    <div (click)="cardClick(card)">
+
+        <div class="card-details">{{card.name}}</div>
+
+        <div class="card-details">{{card.description}}</div>
+
+        <div class="card-details">{{card.dueDate}}</div>
+
+        <div class="card-details">{{getPriority(card.priority)}}</div>
+
+        <br>
+
+        <div class="dropdown">
+            <button class="dropbtn">Move To</button>
+            <div class="dropdown-content">
+                <a href="#" *ngFor="let list of lists">{{list.name}}</a>
+            </div>
+        </div>
+    </div>
+
+</div>

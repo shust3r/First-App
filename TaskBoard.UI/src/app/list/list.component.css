@@ -1,0 +1,14 @@
+.columns,
+.addCarBtns,
+.pillars {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-content: space-between;
+  gap: 40px;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}

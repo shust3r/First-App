@@ -1,38 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit {
-  title = 'TaskBoard.UI';
-  lists: any;
-  cards: any;
+export class AppComponent {
+  hideHistory: boolean = true;
+  
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
-    this.getLists();
-    this.getCards();
-  }
-
-  getLists() {
-    this.http.get('https://localhost:7202/api/Lists')
-    .subscribe(response => {
-        this.lists = response;
-      }, error => {
-        console.log(error);
-      });
-  }
-
-  getCards() {
-    this.http.get('https://localhost:7202/api/Cards')
-    .subscribe(response => {
-        this.cards = response;
-      }, error => {
-        console.log(error);
-      });
+  switchHistory() {
+    this.hideHistory = this.hideHistory == true ? false : true;
   }
 }
