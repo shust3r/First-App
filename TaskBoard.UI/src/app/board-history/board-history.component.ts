@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-board-history',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './board-history.component.css'
 })
 export class BoardHistoryComponent {
+  @Input() hideBtn : boolean;
 
+  switchHistory() {
+    this.hideBtn = true;
+  }
 }

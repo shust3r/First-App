@@ -9,6 +9,4 @@
 
 </div>
 
-<div class="history">
-  <app-board-history [ngStyle]="{'visibility': hideHistory ? 'hidden' : 'visible'}"></app-board-history>
-</div>
+<app-board-history [hideBtn]="hideHistory" [ngStyle]="{'display': hideHistory ? 'none' : 'block'}"></app-board-history>

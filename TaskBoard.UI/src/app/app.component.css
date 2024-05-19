@@ -12,3 +12,10 @@
 .name {
   flex: 1;
 }
+
+.historyBtn {
+  position: relative;
+  right: 10px;
+  top: 30px;
+  height: 20px;
+}
