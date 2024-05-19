@@ -11,6 +11,7 @@
 
 .history {
     position: fixed;
+    animation: animateright 0.4s;
     overflow: auto;
     display: block;
     background: #ffffff;
@@ -44,8 +45,21 @@
     background-color:lightslategray;
 }
 
-p {
+.activities {
     position: relative;
-    left: 20px;
+    left: 5%;
     padding: 5px;
+}
+
+@keyframes animateright {
+    
+    0% {
+        right: -600px;
+        opacity: 0;
+    }
+
+    100% {
+        right: 0;
+        opacity: 1;
+    }
 }

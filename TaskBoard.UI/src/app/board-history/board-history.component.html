@@ -6,31 +6,14 @@
             <button class="closeBtn" (click)="switchHistory()">X</button>
         </div>
     
-        <div class="activities">
-            <p>You added Card Name to New List (May 15 at 8:30 pm)</p>
-            <p>You moved Second Card to Third List (May 3 at 6:20 pm)</p>
+        <div class="activities" *ngFor="let activity of activities">
 
-            <p>You added Card Name to New List (May 15 at 8:30 pm)</p>
-            <p>You moved Second Card to Third List (May 3 at 6:20 pm)</p>
-            
-            <p>You added Card Name to New List (May 15 at 8:30 pm)</p>
-            <p>You moved Second Card to Third List (May 3 at 6:20 pm)</p>
-            
-            <p>You added Card Name to New List (May 15 at 8:30 pm)</p>
-            <p>You moved Second Card to Third List (May 3 at 6:20 pm)</p>
-            
-            <p>You added Card Name to New List (May 15 at 8:30 pm)</p>
-            <p>You moved Second Card to Third List (May 3 at 6:20 pm)</p>
-            
-            <p>You added Card Name to New List (May 15 at 8:30 pm)</p>
-            <p>You moved Second Card to Third List (May 3 at 6:20 pm)</p>
-            
-            <p>You added Card Name to New List (May 15 at 8:30 pm)</p>
-            <p>You moved Second Card to Third List (May 3 at 6:20 pm)</p>
-            
-            <p>You added Card Name to New List (May 15 at 8:30 pm)</p>
-            <p>You moved Second Card to Third List (May 3 at 6:20 pm)</p>
-            
+            <p><b> • </b>You {{activity.operationName}}ed the <b>{{activity.valueAfter}}</b>
+                 to <b>List {{activity.listId}}</b></p>
+            <p> {{activity.operationDate}} </p>
+            <p *ngIf="activity.valueBefore != ''">valueBefore {{activity.valueBefore}}</p>
+
         </div>
+
     </div>
 </div>
