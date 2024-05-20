@@ -16,6 +16,7 @@ public class ActivityRepository : IActivityRepository
     public async Task<IEnumerable<Activity>> GetAllAsync()
     {
         var all = await _context.Activities
+            .OrderByDescending(a => a.OperationDate)
             .ToListAsync();
 
         return all;
@@ -24,6 +25,7 @@ public class ActivityRepository : IActivityRepository
     public async Task<IEnumerable<Activity>> GeByCardIdAsync(int cardId)
     {
         var all = await _context.Activities
+            .OrderByDescending(a => a.OperationDate)
             .Where(a => a.CardId == cardId)
             .ToListAsync();
 

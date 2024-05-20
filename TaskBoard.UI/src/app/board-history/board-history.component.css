@@ -1,5 +1,6 @@
 .bg {
     position: fixed;
+    animation: animateright 0.4s;
     display: block;
     left: 0;
     top: 0;
@@ -11,8 +12,6 @@
 
 .history {
     position: fixed;
-    animation: animateright 0.4s;
-    overflow: auto;
     display: block;
     background: #ffffff;
     width: 30%;
@@ -23,7 +22,7 @@
 
 .header {
     display: flex;
-    height: fit-content;
+    height: 70px;
     background-color:lightslategray;
 }
 
@@ -43,10 +42,24 @@
     color: white;
     border: 0;
     background-color:lightslategray;
+    z-index: 2;
+}
+
+.activityBg {
+    position: fixed;
+    display: block;
+    right: 0;
+    top: 70px;
+    bottom: 70px;
+    width: 30%;
+    height: 100%;
+    background-color:#ffffff;
+    z-index: 1;
 }
 
 .activities {
     position: relative;
+    overflow:visible;
     left: 5%;
     padding: 5px;
 }
@@ -62,4 +75,20 @@
         right: 0;
         opacity: 1;
     }
+}
+
+.footer {
+    position: fixed;
+    display: block; 
+    right: 0;
+    bottom: 0;
+    width: 30%;
+    height: 70px;
+    z-index: 2;
+}
+
+.moreBtn {
+    position: absolute;
+    left: 40%;
+    top: 10%;
 }

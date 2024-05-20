@@ -23,7 +23,7 @@ public class ActivityService
             {
                 case "NAME":
                     activities.Add(
-                    new Activity("renamed", card.Name, op.value.ToString()!)
+                    new Activity("renamed card", card.Name, op.value.ToString()!)
                     {
                         OperationDate = DateTime.UtcNow,
                         CardId = card.Id
@@ -47,7 +47,7 @@ public class ActivityService
                     break;
                 case "LISTID":
                     activities.Add(
-                    new Activity("moved", card.ListId.ToString(), op.value.ToString()!)
+                    new Activity("moved card", card.ListId.ToString(), op.value.ToString()!)
                     {
                         OperationDate = DateTime.UtcNow,
                         CardId = card.Id
@@ -55,7 +55,7 @@ public class ActivityService
                     break;
                 case "DUEDATE":
                     activities.Add(
-                    new Activity("changed", card.DueDate.ToString(), op.value.ToString()!)
+                    new Activity("changed the due date", card.DueDate.ToString(), op.value.ToString()!)
                     {
                         OperationDate = DateTime.UtcNow,
                         CardId = card.Id

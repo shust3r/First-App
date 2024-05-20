@@ -48,7 +48,7 @@ public class CardRepository : ICardRepository
 
         await _context.SaveChangesAsync();
 
-        var activity = new Activity("added", "", card.Name)
+        var activity = new Activity("added the card", "", card.Name)
         {
             OperationDate = DateTime.UtcNow,
             CardId = card.Id,

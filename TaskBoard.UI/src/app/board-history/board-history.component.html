@@ -1,18 +1,26 @@
 <div class="bg" [ngStyle]="{'display': hideBtn ? 'none' : 'block'}">
 
     <div class="history">
+
         <div class="header">
             <h2 class="hist">History</h2>
             <button class="closeBtn" (click)="switchHistory()">X</button>
         </div>
     
-        <div class="activities" *ngFor="let activity of activities">
+        <div class="activityBg">
+            
+            <div class="activities" *ngFor="let activity of activitiesToShow">
+                <p><b> • </b>You {{activity.operationName}} <b>{{activity.valueAfter}}</b>
+                to <b>List {{activity.listId}}</b></p>
+                <p *ngIf="activity.valueBefore != ''">from {{activity.valueBefore}}</p>
+                <p> {{activity.operationDate}} </p>
+                
+            </div>
 
-            <p><b> • </b>You {{activity.operationName}}ed the <b>{{activity.valueAfter}}</b>
-                 to <b>List {{activity.listId}}</b></p>
-            <p> {{activity.operationDate}} </p>
-            <p *ngIf="activity.valueBefore != ''">valueBefore {{activity.valueBefore}}</p>
+        </div>
 
+        <div class="footer">
+            <button class="moreBtn" (click)="showMore()"><h3>Show more</h3></button>
         </div>
 
     </div>

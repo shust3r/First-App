@@ -156,91 +156,91 @@ public class TaskBoardContext : DbContext
 
         modelBuilder.Entity<Activity>()
             .HasData(
-            new Activity("add", string.Empty, "Card Name 1")
+            new Activity("added the card", string.Empty, "Card Name 1")
             {
                 Id = 1,
                 OperationDate = DateTime.UtcNow,
                 ListId = 1,
                 CardId = 1
             },
-            new Activity("add", string.Empty, "Card 2")
+            new Activity("added the card", string.Empty, "Card 2")
             {
                 Id = 2,
                 OperationDate = DateTime.UtcNow,
                 ListId = 1,
                 CardId = 2
             },
-            new Activity("add", string.Empty, "Card Name 3")
+            new Activity("added the card", string.Empty, "Card Name 3")
             {
                 Id = 3,
                 OperationDate = DateTime.UtcNow,
                 ListId = 1,
                 CardId = 3
             },
-            new Activity("add", string.Empty, "Card 4")
+            new Activity("added the card", string.Empty, "Card 4")
             {
                 Id = 4,
                 OperationDate = DateTime.UtcNow,
                 ListId = 1,
                 CardId = 4
             },
-            new Activity("add", string.Empty, "Card Name 5")
+            new Activity("added the card", string.Empty, "Card Name 5")
             {
                 Id = 5,
                 OperationDate = DateTime.UtcNow,
                 ListId = 1,
                 CardId = 5
             },
-            new Activity("add", string.Empty, "Card 6")
+            new Activity("added the card", string.Empty, "Card 6")
             {
                 Id = 6,
                 OperationDate = DateTime.UtcNow,
                 ListId = 2,
                 CardId = 6
             },
-            new Activity("add", string.Empty, "Card Name 7")
+            new Activity("added the card", string.Empty, "Card Name 7")
             {
                 Id = 7,
                 OperationDate = DateTime.UtcNow,
                 ListId = 2,
                 CardId = 7
             },
-            new Activity("add", string.Empty, "Card 8")
+            new Activity("added the card", string.Empty, "Card 8")
             {
                 Id = 8,
                 OperationDate = DateTime.UtcNow,
                 ListId = 2,
                 CardId = 8
             },
-            new Activity("add", string.Empty, "Card Name 9")
+            new Activity("added the card", string.Empty, "Card Name 9")
             {
                 Id = 9,
                 OperationDate = DateTime.UtcNow,
                 ListId = 2,
                 CardId = 9
             },
-            new Activity("add", string.Empty, "Card 10")
+            new Activity("added the card", string.Empty, "Card 10")
             {
                 Id = 10,
                 OperationDate = DateTime.UtcNow,
                 ListId = 2,
                 CardId = 10
             },
-            new Activity("add", string.Empty, "Card 11")
+            new Activity("added the card", string.Empty, "Card 11")
             {
                 Id = 11,
                 OperationDate = DateTime.UtcNow,
                 ListId = 3,
                 CardId = 11
             },
-            new Activity("add", string.Empty, "Card 12")
+            new Activity("added the card", string.Empty, "Card 12")
             {
                 Id = 12,
                 OperationDate = DateTime.UtcNow,
                 ListId = 4,
                 CardId = 12
             },
-            new Activity("add", string.Empty, "Card 13")
+            new Activity("added the card", string.Empty, "Card 13")
             {
                 Id = 13,
                 OperationDate = DateTime.UtcNow,
