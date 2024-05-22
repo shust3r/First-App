@@ -34,6 +34,16 @@ public class ListRepository : IListRepository
         return list;
     }
 
+    public async Task<string> GetNameAsync(int listId)
+    {
+        var name = await _context.Lists
+            .Where(l => l.Id == listId)
+            .Select(l => l.Name)
+            .FirstOrDefaultAsync();
+
+        return name;
+    }
+
     public async Task<List> AddAsync(List list)
     {
         await _context.Lists.AddAsync(list);

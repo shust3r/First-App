@@ -39,7 +39,7 @@ public class ActivityRepository : IActivityRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task AddRange(IEnumerable<Activity> activities)
+    public async Task AddRangeAsync(IEnumerable<Activity> activities)
     {
         await _context.Activities.AddRangeAsync(activities);
 

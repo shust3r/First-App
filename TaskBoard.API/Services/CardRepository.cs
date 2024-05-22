@@ -48,7 +48,7 @@ public class CardRepository : ICardRepository
 
         await _context.SaveChangesAsync();
 
-        var activity = new Activity("added the card", "", card.Name)
+        var activity = new Activity("added", "", card.Name, list!.Name, card.Name)
         {
             OperationDate = DateTime.UtcNow,
             CardId = card.Id,
@@ -77,6 +77,11 @@ public class CardRepository : ICardRepository
         {
             return card;
         }
+        
+        var list = await _context.Lists
+           .Where(l => l.Id == card.ListId)
+           .FirstOrDefaultAsync();
+
 
         _context.Cards.Remove(card);
         await _context.SaveChangesAsync();

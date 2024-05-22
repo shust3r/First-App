@@ -8,5 +8,7 @@ public class ActivityDto
     public string ValueBefore { get; set; } = string.Empty;
     public string ValueAfter { get; set; } = string.Empty;
     public int CardId { get; set; }
+    public string CardName { get; set; } = string.Empty;
     public int ListId { get; set; }
+    public string ListName { get; set; } = string.Empty;
 }
