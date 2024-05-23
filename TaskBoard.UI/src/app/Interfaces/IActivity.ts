@@ -5,5 +5,7 @@ export interface IActivity {
     valueBefore: string;
     valueAfter: string;
     listId: number;
+    listName: string;
     cardId: number;
+    cardName: string;
 }

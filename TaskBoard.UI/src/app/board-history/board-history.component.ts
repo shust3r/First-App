@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { IActivity } from '../Interfaces/IActivity';
 import { ActivityService } from '../Services/activity.service';
 
@@ -13,7 +13,7 @@ export class BoardHistoryComponent implements OnInit {
   activities: IActivity[] = [];
   activitiesToShow: IActivity[] = [];
   currentPage: number = 0;
-  activitiesAmount: number = 5;
+  activitiesAmount: number = 7;
   endIndex: number = this.activitiesAmount;
 
   constructor(

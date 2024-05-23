@@ -9,12 +9,8 @@
     
         <div class="activityBg">
             
-            <div class="activities" *ngFor="let activity of activitiesToShow">
-                <p><b> • </b>You {{activity.operationName}} <b>{{activity.valueAfter}}</b>
-                to <b>List {{activity.listId}}</b></p>
-                <p *ngIf="activity.valueBefore != ''">from {{activity.valueBefore}}</p>
-                <p> {{activity.operationDate}} </p>
-                
+            <div *ngFor="let activity of activitiesToShow">
+                <app-activity [activity]="activity"></app-activity>
             </div>
 
         </div>

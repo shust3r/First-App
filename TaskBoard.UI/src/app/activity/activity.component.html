@@ -1,0 +1,40 @@
+<div class="activities">
+    <div *ngIf="activity.operationName === 'added'">
+        <b> • </b> You {{activity.operationName}} the 
+        <b>{{activity.cardName}}</b> to 
+        <b>{{activity.listName}}</b>
+    </div>
+    
+    <div *ngIf="activity.operationName === 'renamed'">
+        <b> • </b> You {{activity.operationName}} 
+        <b>{{activity.valueBefore}}</b> to 
+        <b>{{activity.valueAfter}}</b>
+    </div>
+    
+    <div *ngIf="activity.operationName === 'changed the description'">
+        <b> • </b> You {{activity.operationName}} from 
+        <i><b>{{activity.valueBefore}}</b></i> to 
+        <i><b>{{activity.valueAfter}}</b></i>
+    </div>
+    
+    <div *ngIf="activity.operationName === 'changed the priority'">
+        <b> • </b> You {{activity.operationName}}
+        <b>{{activity.cardName}}</b> from 
+        <b>{{getPriority(activity.valueBefore)}}</b> to
+        <b>{{getPriority(activity.valueAfter)}}</b>
+    </div>
+    
+    <div *ngIf="activity.operationName === 'changed the due date'">
+        <b> • </b> You {{activity.operationName}} to
+        <b>{{activity.valueAfter}}</b> for
+        <b>{{activity.cardName}}</b>
+    </div>
+    
+    <div *ngIf="activity.operationName === 'moved'">
+        <b> • </b> You {{activity.operationName}} the
+        <b>{{activity.cardName}}</b> from 
+        <b>{{activity.valueBefore}}</b> to 
+        <b>{{activity.valueAfter}}</b>
+    </div>
+    <p> {{humanizeDate(activity.operationDate)}}</p> 
+</div>

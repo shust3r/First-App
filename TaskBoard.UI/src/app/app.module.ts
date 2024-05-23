@@ -10,6 +10,7 @@ import { BoardHistoryComponent } from './board-history/board-history.component';
 import { ListComponent } from './list/list.component';
 import { OpenedCardComponent } from './opened-card/opened-card.component';
 import { CreateCardComponent } from './create-card/create-card.component';
+import { ActivityComponent } from './activity/activity.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CreateCardComponent } from './create-card/create-card.component';
     ListComponent,
     OpenedCardComponent,
     CreateCardComponent,
+    ActivityComponent,
   ],
   imports: [
     BrowserModule,
