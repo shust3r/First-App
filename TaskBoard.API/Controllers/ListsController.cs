@@ -15,12 +15,15 @@ public class ListsController : ControllerBase
 {
     private readonly IListRepository _repo;
     private readonly IMapper _mapper;
+    private readonly ListService _listSvc;
 
     public ListsController(IListRepository repo,
-        IMapper mapper)
+        IMapper mapper,
+        ListService listService)
     {
         _repo = repo ?? throw new ArgumentNullException(nameof(repo));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _listSvc = listService ?? throw new ArgumentNullException(nameof(listService));
     }
 
     [HttpGet]
@@ -29,6 +32,25 @@ public class ListsController : ControllerBase
         try
         {
             var lists = await _repo.GetAllAsync();
+            if (!lists.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(lists);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+    }
+
+    [HttpGet("Names")]
+    public async Task<ActionResult<IEnumerable<ListWithoutDetailsDto>>> GetAllListNamesWithIDs()
+    {
+        try
+        {
+            var lists = await _listSvc.GetAllListNamesWithIs();
             if (!lists.Any())
             {
                 return NotFound();

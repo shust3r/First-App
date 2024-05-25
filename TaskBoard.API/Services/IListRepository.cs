@@ -5,6 +5,7 @@ namespace TaskBoard.API.Services;
 public interface IListRepository
 {
     Task<IEnumerable<List>> GetAllAsync();
+    Task<IEnumerable<List>> GetAllWithoutDetailsAsync();
     Task<List?> GetByIdAsync(int listId);
     Task<string> GetNameAsync(int listId);
     Task<List> AddAsync(List list);

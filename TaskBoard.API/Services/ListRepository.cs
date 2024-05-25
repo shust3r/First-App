@@ -13,6 +13,14 @@ public class ListRepository : IListRepository
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
+    public async Task<IEnumerable<List>> GetAllWithoutDetailsAsync()
+    {
+        var all = await _context.Lists
+            .ToListAsync();
+
+        return all;
+    }
+
     public async Task<IEnumerable<List>> GetAllAsync()
     {
         var all = await _context.Lists
