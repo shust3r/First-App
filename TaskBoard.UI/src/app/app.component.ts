@@ -6,8 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  hideHistory: boolean = false;
-  
+  hideHistory: boolean = true;
 
   switchHistory() {
     this.hideHistory = this.hideHistory == true ? false : true;

@@ -3,6 +3,7 @@ import { ICard } from '../Interfaces/ICard';
 import { IList } from '../Interfaces/IList';
 import { CardService } from '../Services/card.service';
 import { ListService } from '../Services/list.service';
+import { IListNameId } from '../Interfaces/IListNameId';
 
 @Component({
   selector: 'app-list',
@@ -10,9 +11,11 @@ import { ListService } from '../Services/list.service';
   styleUrl: './list.component.css'
 })
 export class ListComponent implements OnInit {
-  lists: IList[];
-  cards: ICard[];
-  emptyLists: IList[];
+  lists: IList[] = [];
+  cards: ICard[] = [];
+  isCreateCardOpened: boolean = false;
+  listIdForCardCreation: number;
+  listNamesWithIds: IListNameId[] = [];
 
   constructor(
     private cardSvc: CardService,
@@ -27,5 +30,14 @@ export class ListComponent implements OnInit {
     this.listSvc.getLists().subscribe(response => {
       this.lists = response;
     });
+    
+    this.listSvc.getListNamesWithIds().subscribe( r => {
+      this.listNamesWithIds = r;
+    })
+  }
+
+  openCreate(listId: number) {
+    this.listIdForCardCreation = listId;
+    this.isCreateCardOpened = true;
   }
 }

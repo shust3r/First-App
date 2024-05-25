@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CardService } from '../Services/card.service';
 import { ICard } from '../Interfaces/ICard';
+import { IListNameId } from '../Interfaces/IListNameId';
 
 @Component({
   selector: 'app-create-card',
@@ -9,10 +10,13 @@ import { ICard } from '../Interfaces/ICard';
 })
 
 export class CreateCardComponent {
+  @Input() currentListId: number;
+  @Input() isCreateCardOpened: boolean = true;
+  @Input() listNamesWithIds: IListNameId[];
+
   newCard : ICard = {
     name: "Testing HTTP POST method",
     description: "some Description",
-    // dueDate: new Date('2024-05-25T03:24:00'),
     priority: 3
   }
 

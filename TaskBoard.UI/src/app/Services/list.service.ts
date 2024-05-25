@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IList } from '../Interfaces/IList';
+import { IListNameId } from '../Interfaces/IListNameId';
 
 @Injectable({
   providedIn: 'root'
@@ -12,5 +13,9 @@ export class ListService {
 
   getLists(): Observable<IList[]> {
     return this.http.get<IList[]>('/api/Lists');
+  }
+
+  getListNamesWithIds(): Observable<IListNameId[]> {
+    return this.http.get<IListNameId[]>('/api/Lists/Names');
   }
 }

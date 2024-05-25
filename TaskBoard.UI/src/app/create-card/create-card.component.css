@@ -1,0 +1,47 @@
+.bg {
+    position: fixed;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0000003d;
+    z-index: 1;
+}
+
+.createCardWindow
+{
+    position: fixed;
+    display: block;
+    border-radius: 15px;
+    left: 25%;
+    top: 15%;
+    width: 50%;
+    height: 70%;
+    background-color: #ffffff;
+    z-index: 2;
+}
+
+.closeModalBtn {
+    position: fixed;
+    height: 50%;
+    width: 50%;
+    z-index: 3;
+}
+
+.closeBtn {
+    position: relative;
+    background-color: #00000000;
+    left: 93%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+}
+
+.form {
+    position: relative;
+    top: 5px;
+    left: 5%;
+    z-index: 3;
+}

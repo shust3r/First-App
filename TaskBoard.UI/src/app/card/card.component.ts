@@ -1,17 +1,23 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ICard } from '../Interfaces/ICard';
-import { IList } from '../Interfaces/IList';
+import { IListNameId } from '../Interfaces/IListNameId';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
   @Input() cards: ICard[];
-  @Input() lists: IList[];
+  @Input() currentListId: number;
+  @Input() listNamesWithIds: IListNameId[];
+  listsToMove: IListNameId[] = [];
   card: ICard;
   isCardOpened: boolean = false;
+
+  ngOnInit(): void {
+    this.ListsToMove();
+  }
 
   getPriority(priorityId: number) {
     if (priorityId == 1) return "Low";
@@ -22,5 +28,12 @@ export class CardComponent {
   cardClick(card: ICard) {
     this.card = card;
     this.isCardOpened = true;
+  }
+
+  ListsToMove() {
+    this.listNamesWithIds.forEach(element => {
+      if (element.id != this.currentListId)
+        this.listsToMove.push(element);
+    });
   }
 }

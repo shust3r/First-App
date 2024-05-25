@@ -1,8 +1,52 @@
-<!-- TODO: implement the modal window -->
-<!-- with all the fields for new card -->
+<div class="bg"
+    [ngStyle]="{'display': isCreateCardOpened ? 'block' : 'none'}">
 
-<div>
-    <button (click)="createCard">Create Card</button>
+    <div class="createCardWindow">
+
+        <div class="closeModalBtn">
+            <button
+                class="closeBtn">
+                    <h2>X</h2>
+            </button>
+          </div>
+
+        <div class="form">
+
+            <div class="cardName"><h1>New card</h1></div>
+
+            <div class="alternativeDropdown">
+                <label for="list-select">Choose the list:</label>
+                <select id="list-select">
+                    <option *ngFor="let list of listNamesWithIds" value="{{list.id}}">{{list.name}}</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="dueDate">Due Date:</label>
+                <input type="date" id="dueDate" name="dueDate">
+            </div>
+
+            <div class="priority">
+                <label for="prior-select">Choose the priority</label>
+                <select id="prior-select">
+                    <option value="low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+
+            <div class="description">
+                <label for="descr">Description :</label>
+                <input type="text" id="descr" name="descr" required size="100px" placeholder="Write some informationq"/>
+            </div>
+
+        </div>
+
+        <div class="actionBtns">
+            <button>Save</button>
+            <button>Cancel</button>
+        </div>
+    </div>
+
+    <!-- <button (click)="createCard">+ Add new card</button> -->
 </div>
-
-<p>create-card works!</p>

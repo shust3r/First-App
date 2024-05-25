@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CardComponent } from './card/card.component';
-import { AddNewCardBtnComponent } from './add-new-card-btn/add-new-card-btn.component';
 import { BoardHistoryComponent } from './board-history/board-history.component';
 import { ListComponent } from './list/list.component';
 import { OpenedCardComponent } from './opened-card/opened-card.component';
@@ -16,7 +15,6 @@ import { ActivityComponent } from './activity/activity.component';
   declarations: [
     AppComponent,
     CardComponent,
-    AddNewCardBtnComponent,
     BoardHistoryComponent,
     ListComponent,
     OpenedCardComponent,
