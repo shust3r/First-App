@@ -3,12 +3,13 @@
     <div *ngFor="let list of lists">
       
       <div class="listControll">
-        <b>{{list.name}} {{list.cards.length}}</b>
-        <input type="button" value="options">
+        <b>{{list.name}}</b>
+        <b class="listLength">{{list.cards.length}}</b>
+        <input type="button" class="listOptionsBtn" value="options">
       </div>
 
       <div>
-        <button (click)="openCreate(list.id)">+ Add new card</button>
+        <button class="addCardBtn" (click)="openCreate(list.id)">+ Add new card</button>
       </div>
 
       <div class="pillar">
