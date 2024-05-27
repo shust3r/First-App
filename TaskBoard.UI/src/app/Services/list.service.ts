@@ -18,4 +18,8 @@ export class ListService {
   getListNamesWithIds(): Observable<IListNameId[]> {
     return this.http.get<IListNameId[]>('/api/Lists/Names');
   }
+
+  // deleteListById(listId: number) {
+  //   this.http.delete('api/Lists/' + listId);
+  // }
 }

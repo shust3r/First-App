@@ -40,4 +40,8 @@ export class ListComponent implements OnInit {
     this.listIdForCardCreation = listId;
     this.isCreateCardOpened = true;
   }
+
+  // deleteList(list: IList) {
+  //   this.listSvc.deleteListById(list.id);
+  // }
 }

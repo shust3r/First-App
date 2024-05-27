@@ -1,23 +1,27 @@
 <div class="card" *ngFor="let card of cards">
 
-    <div (click)="cardClick(card)">
+    <div (click)="openCard(card.id)">    
 
-        <div class="card-details">{{card.name}}</div>
+        <div class="card-details">
+            <h3>{{card.name}}</h3>
+        </div>
 
         <div class="card-details">{{card.description}}</div>
 
-        <div class="card-details">{{card.dueDate}}</div>
+        <div class="card-details">{{humanizeDueDate(card.dueDate)}}</div>
 
         <div class="card-details">{{getPriority(card.priority)}}</div>
 
-        <br>
-
-        <div class="dropdown">
-            <button class="dropbtn">Move To</button>
-            <div class="dropdown-content">
-                <a href="#" *ngFor="let list of listsToMove">{{list.name}}</a>
-            </div>
+        <div class="card-details">
+            <select class="selectMove">
+                <option value="Move to:">Move to:</option>
+                <option *ngFor="let list of listsToMove"
+                    value="list.id">{{list.name}}
+                </option>
+            </select>
         </div>
     </div>
 
 </div>
+
+<app-card-details [cardId]="cardId" [isCardOpened]="isCardOpened"></app-card-details>

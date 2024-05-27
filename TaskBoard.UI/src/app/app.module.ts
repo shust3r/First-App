@@ -10,6 +10,7 @@ import { ListComponent } from './list/list.component';
 import { OpenedCardComponent } from './opened-card/opened-card.component';
 import { CreateCardComponent } from './create-card/create-card.component';
 import { ActivityComponent } from './activity/activity.component';
+import { CardDetailsComponent } from './card-details/card-details.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ActivityComponent } from './activity/activity.component';
     OpenedCardComponent,
     CreateCardComponent,
     ActivityComponent,
+    CardDetailsComponent,
   ],
   imports: [
     BrowserModule,

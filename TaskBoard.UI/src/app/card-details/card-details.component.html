@@ -1,0 +1,30 @@
+<div [ngStyle]="{'display': isCardOpened ? 'block' : 'none'}" class="bG">
+
+    <div class="cardDetails">
+        <div class="header">
+            <button class="closeBtn">X</button>
+        </div>
+
+        <div class="info">
+
+            <div class="cardInfo">
+                <div class="field name"><h1><b>{{card.name}}</b></h1></div>
+                <div class="field list">List {{card.listId}}</div>
+                <div class="field due"> Due date {{card.dueDate}}</div>
+                <div class="field prior">Priority {{card.priority}}</div>
+                <div class="field"><h2>Description</h2></div>
+                <div class="descr">{{card.description}}</div>
+            </div>
+    
+            <div class="cardActivities">
+                <div class="field activity"><h3>Activity</h3></div>
+                <div class="field activity"
+                    *ngFor="let activity of card.activities">
+                    <app-activity [activity]="activity"></app-activity>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+</div>

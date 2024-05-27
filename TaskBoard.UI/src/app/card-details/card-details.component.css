@@ -1,0 +1,64 @@
+.bG {
+    position: fixed;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000050;
+    z-index: 1;
+}
+
+.cardDetails {
+    position: fixed;
+    display: block;
+    background-color: white;
+    border-radius: 20px;
+    left: 5%;
+    top: 10%;
+    width: 90%;
+    height: 80%;
+    z-index: 2;
+}
+
+.header {
+    background-color:lightslategray;
+    border-radius: 20px 20px 0 0;
+    height: 50px;
+}
+
+.closeBtn {
+    position: relative;
+    left: 95%;
+    top: 30%;
+    border: none;
+    background-color:lightslategray;
+    font-size: 20px;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+}
+
+.cardInfo {
+    position: relative;
+    left: 5%;
+    width: 65%;
+}
+    
+.cardActivities {
+    position:relative;
+    overflow:auto;
+    width: 45%;
+    background-color: lightgray;
+}
+
+.field {
+    margin-top: 20px;
+}
+
+.activity {
+    margin-left: 10px;
+}
