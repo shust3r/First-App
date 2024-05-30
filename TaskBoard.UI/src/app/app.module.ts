@@ -11,6 +11,7 @@ import { OpenedCardComponent } from './opened-card/opened-card.component';
 import { CreateCardComponent } from './create-card/create-card.component';
 import { ActivityComponent } from './activity/activity.component';
 import { CardDetailsComponent } from './card-details/card-details.component';
+import { AddListComponent } from './add-list/add-list.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CardDetailsComponent } from './card-details/card-details.component';
     CreateCardComponent,
     ActivityComponent,
     CardDetailsComponent,
+    AddListComponent,
   ],
   imports: [
     BrowserModule,

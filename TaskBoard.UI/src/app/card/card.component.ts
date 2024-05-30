@@ -15,7 +15,6 @@ export class CardComponent implements OnInit {
   listsToMove: IListNameId[] = [];
   isCardOpened: boolean = false;
   cardId: number;
-  card: ICard;
   
   constructor(private cardSvc: CardService) {}
 
@@ -37,10 +36,7 @@ export class CardComponent implements OnInit {
   }
 
   openCard(id: number) {
-    this.cardSvc.getCardById(id).subscribe(r => {
-      this.card = r;
-    });
-    
+    this.cardId = id;
     this.isCardOpened = true;
   }
 
@@ -49,8 +45,13 @@ export class CardComponent implements OnInit {
     return date.toDateString();
   }
 
-  // moveCard(c: number, id: number) {
-  //   // c.listId = id;
-  //   this.cardSvc.moveCard(c, id);
-  // }
+  moveCard(cardId: number, listId: number) {
+    console.log("List: " + listId);
+    console.log("Card: "  + cardId);
+
+    if(cardId != 0 && listId != 0)
+    {
+      this.cardSvc.moveCard(cardId, listId);
+    }
+  }
 }

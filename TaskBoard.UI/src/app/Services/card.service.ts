@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICard } from '../Interfaces/ICard';
 import { Observable } from 'rxjs';
+import { error } from 'node:console';
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +14,21 @@ export class CardService {
     return this.http.get<ICard[]>('/api/Cards');
   }
 
-  //TODO: Fix this method
   getCardById(cardId: number): Observable<ICard> {
-    // const get = `/api/Cards/${cardId}`;
-    return this.http.get<ICard>("/api/Cards/13");
+    return this.http.get<ICard>(`/api/Cards/${cardId}`);
   }
 
   createCard(cardToCreate: ICard) : Observable<ICard> {
-    return this.http.post<ICard>('api/Cards?Listid=1', cardToCreate);
+    return this.http.post<ICard>(`api/Cards?Listid=${cardToCreate.listId}`, cardToCreate);
   }
 
-  // moveCard(cardId: number, listId: number) {
-  //   this.http.patch('api/Cards/6', 
-  //     {
-  //       "operationType": 0,
-  //       "path": "listId",
-  //       "op": "replace",
-  //       "value": "3"
-  //     });
-  // }
+  moveCard(cardId: number, listId: number) {
+    this.http.patch(`api/Cards/${cardId}`, 
+    [{
+        "operationType": '0',
+        "path": "listId",
+        "op": "replace",
+        "value": `${listId}`
+    }]).subscribe();
+  }
 }

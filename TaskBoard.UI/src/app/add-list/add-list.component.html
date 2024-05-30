@@ -1,0 +1,14 @@
+<div *ngIf="!isFormOpened" class="listControll">
+    <b (click)="openCreateListForm()">Add another list</b>
+</div>
+
+<div *ngIf="isFormOpened" class="flexCont">
+    <input class="name" id="name" placeholder="Enter list title..." type="text">
+
+    <div class="btnsGrid">
+        <input (click)="addList()" class="add btn" type="button" value="Add list">
+        <input (click)="cancel()"  class="cancel btn" type="button" value="Cancel">
+    </div>
+
+</div>
+

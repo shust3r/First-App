@@ -7,7 +7,7 @@
         <b class="listLength">{{list.cards.length}}</b>
 
         <!-- TODO: implement here list options (edit, delete list) -->
-        <button class="listOptionsBtn">Del</button>
+        <button class="listOptionsBtn">...</button>
 
         <!-- <div>
           <select name="list-options">
@@ -23,17 +23,18 @@
       </div>
 
       <div class="pillar">
-        <app-card 
+        <app-card
           [currentListId]="list.id"
           [listNamesWithIds]="listNamesWithIds"
-          [cards]="list.cards" [lists]="lists"
-        ></app-card>
+          [cards]="list.cards" [lists]="lists">
+        </app-card>
+
       </div>
-      <!-- <div class="empty pillar" *ngIf="lists.length < 4">
-        <div *ngFor="let item of emptyLists">
-            TODO: add button to create new list if there are not 4 lists
-        </div>
-      </div> -->
+      
+    </div>
+
+    <div class="empty pillar" *ngFor="let item of getEmptyLists()">
+      <app-add-list></app-add-list>
     </div>
 
   </div>

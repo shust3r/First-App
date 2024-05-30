@@ -8,9 +8,9 @@ import { CardService } from '../Services/card.service';
   styleUrl: './card-details.component.css'
 })
 export class CardDetailsComponent implements OnInit {
-  @Input() isCardOpened: boolean = false;
+  isCardOpened: boolean = true;
   @Input() cardId: number;
-  card: ICard;
+  card: ICard = {name: '', id: null, description: '', dueDate: null, priority: 0, listId: null, activities: []};
 
   constructor(private cardSvc: CardService) {}
 

@@ -16,6 +16,7 @@ export class ListComponent implements OnInit {
   isCreateCardOpened: boolean = false;
   listIdForCardCreation: number;
   listNamesWithIds: IListNameId[] = [];
+  emptyPillars: number[] = [];
 
   constructor(
     private cardSvc: CardService,
@@ -30,7 +31,7 @@ export class ListComponent implements OnInit {
     this.listSvc.getLists().subscribe(response => {
       this.lists = response;
     });
-    
+
     this.listSvc.getListNamesWithIds().subscribe( r => {
       this.listNamesWithIds = r;
     })
@@ -39,6 +40,15 @@ export class ListComponent implements OnInit {
   openCreate(listId: number) {
     this.listIdForCardCreation = listId;
     this.isCreateCardOpened = true;
+  }
+
+  getFreeSpaceAmount() {
+    const amount = 4 - this.listNamesWithIds.length;
+  }
+
+  getEmptyLists(): number[] {
+    const len = 4 - this.lists.length;
+    return new Array<number>(len);
   }
 
   // deleteList(list: IList) {

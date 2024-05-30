@@ -19,6 +19,10 @@ export class ListService {
     return this.http.get<IListNameId[]>('/api/Lists/Names');
   }
 
+  createList(name: string) {
+    return this.http.post<IList>(`api/Lists`, {"name": `${name}`});
+  }
+
   // deleteListById(listId: number) {
   //   this.http.delete('api/Lists/' + listId);
   // }

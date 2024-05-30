@@ -1,0 +1,28 @@
+.listControll {
+    margin: 10px;
+    padding: 10px;
+    border-top: 3px solid rgba(128, 128, 128, 0.616);
+    border-bottom: 3px solid rgba(128, 128, 128, 0.616);
+}
+
+.flexCont {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    margin: 13px 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btnsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.btn {
+    margin: 0px 10px;
+    padding: 10px;
+    border-radius: 5px;
+}

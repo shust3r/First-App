@@ -1,15 +1,19 @@
-<div class="flex-container">
+<div class="bg">
 
-  <div class="head">
-    <h1 class="name"><b>My Task Board</b></h1>
-    <input type="button"(click)="switchHistory()" class="historyBtn" value="History">
+  <div class="flex-container">
+
+    <div class="head">
+      <h1 class="name"><b>My Task Board</b></h1>
+      <input type="button"(click)="switchHistory()" class="historyBtn" value="History">
+    </div>
+  
+    <app-list></app-list>
+  
   </div>
-
-  <app-list></app-list>
+  
+  <app-board-history
+    [hideBtn]="hideHistory" 
+    [ngStyle]="{'display': hideHistory ? 'none' : 'block'}">
+  </app-board-history>
 
 </div>
-
-<app-board-history
-  [hideBtn]="hideHistory" 
-  [ngStyle]="{'display': hideHistory ? 'none' : 'block'}">
-</app-board-history>
