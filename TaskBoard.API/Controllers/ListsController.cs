@@ -88,7 +88,8 @@ public class ListsController : ControllerBase
     {
         var listToAdd = new ListDto()
         {
-            Name = list.Name
+            Name = list.Name,
+            BoardId = 1
         };
 
         var addedList = await _repo.AddAsync(_mapper.Map<Entities.List>(listToAdd));
