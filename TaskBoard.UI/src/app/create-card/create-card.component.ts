@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CardService } from '../Services/card.service';
 import { ICard } from '../Interfaces/ICard';
 import { IListNameId } from '../Interfaces/IListNameId';
@@ -9,20 +9,34 @@ import { IListNameId } from '../Interfaces/IListNameId';
   styleUrl: './create-card.component.css'
 })
 
-export class CreateCardComponent {
+export class CreateCardComponent implements OnInit {
   @Input() currentListId: number;
-  @Input() isCreateCardOpened: boolean = true;
   @Input() listNamesWithIds: IListNameId[];
+  @Input() oldCard: ICard | null;
+  
+  priorities = [{ id: 1, text:"Low" }, { id: 2, text:"Medium" }, { id: 3, text:"High"}];
 
   newCard : ICard = {
-    name: "Testing HTTP POST method",
-    description: "some Description",
-    priority: 3
+    name: "New card",
+    description: "",
+    priority: 1
   }
 
   constructor(private cardSvc: CardService){}
+  ngOnInit(): void {
+    if(this.oldCard != null)
+      this.newCard = this.oldCard;
+    else
+      this.newCard.listId = this.currentListId;
+  }
 
   createCard() {
-    this.cardSvc.createCard(this.newCard);
+    this.cardSvc.createCard(this.newCard).subscribe();
+
+    window.location.reload();
+  }
+
+  closeModal() {
+    window.location.reload();
   }
 }

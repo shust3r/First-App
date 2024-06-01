@@ -9,14 +9,15 @@ import { CardService } from '../Services/card.service';
 })
 export class CardDetailsComponent implements OnInit {
   isCardOpened: boolean = true;
-  @Input() cardId: number;
-  card: ICard = {name: '', id: null, description: '', dueDate: null, priority: 0, listId: null, activities: []};
+  @Input() card: ICard;
 
   constructor(private cardSvc: CardService) {}
 
   ngOnInit(): void {
-    this.cardSvc.getCardById(this.cardId).subscribe(r => {
-      this.card = r;
-    });
+  }
+
+  closeCard() {
+    this.isCardOpened = false;
+    window.location.reload();
   }
 }

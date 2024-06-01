@@ -23,7 +23,17 @@ export class ListService {
     return this.http.post<IList>(`api/Lists`, {"name": `${name}`});
   }
 
-  // deleteListById(listId: number) {
-  //   this.http.delete('api/Lists/' + listId);
-  // }
+  renameList(name: string, id: number) {
+    this.http.patch<IList>(`api/Lists/${id}`,
+    [{
+      "operationType": 0,
+      "path": "Name",
+      "op": "replace",
+      "value": `${name}`
+    }]).subscribe();
+  }
+
+  deleteListById(listId: number) {
+    this.http.delete(`api/Lists/${listId}`).subscribe();
+  }
 }

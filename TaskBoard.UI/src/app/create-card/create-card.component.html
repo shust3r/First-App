@@ -1,52 +1,49 @@
-<div class="bg"
-    [ngStyle]="{'display': isCreateCardOpened ? 'block' : 'none'}">
+<div class="bg">
 
     <div class="createCardWindow">
 
         <div class="header">
-            <button class="closeModalBtn" class="closeBtn"><h2>X</h2></button>
+            <input type="button" name="closeBtn" class="closeBtn" value="X" (click)="closeModal()">
         </div>
 
-        <div class="form">
+        <form class="form">
 
             <div class="field name">
-                <input class="cardName" type="text" 
-                    required minlength="1" maxlength="50" value="New Card">
+                <input name="name" [(ngModel)]="newCard.name" placeholder="Card Name" type="text"
+                    required minlength="1" maxlength="50" class="cardName">
             </div>
 
             <div class="field">
                 <label for="list-select">List </label>
-                <select class="select" id="list-select">
-                    <option *ngFor="let list of listNamesWithIds" value="{{list.id}}">{{list.name}}</option>
+                <select name="listId" class="select" id="list-select" [(ngModel)]="newCard.listId">
+                    <option *ngFor="let list of listNamesWithIds" value="{{list.id}}" required>{{list.name}}</option>
                 </select>
             </div>
 
             <div class="field dueDate">
                 <label for="dueDate">Due Date</label>
-                <input class="select" type="date" id="dueDate" name="dueDate">
+                <input class="select" type="date" id="dueDate"  name="dueDate" [(ngModel)]="newCard.dueDate" required>
             </div>
 
             <div class="field priority">
                 <label for="prior-select">Priority</label>
-                <select class="select" id="prior-select">
-                    <option value="low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
+                <select name="priority" id="prior-select" class="select" [(ngModel)]="newCard.priority">
+                    <option *ngFor="let prior of priorities" value="{{prior.id}}" required>{{prior.text}}</option>
                 </select>
             </div>
 
             <div class="field">
                 <label class="descr" for="descr">Description</label>
-                <input class="description" type="text" id="descr" name="descr" required placeholder="Write some information"/>
+                <input class="description" type="text" id="descr" name="descr" [(ngModel)]="newCard.description" required placeholder="Write some information"/>
             </div>
 
-        </div>
+            <div class="field">
+                <button (click)="createCard()" type="submit" class="saveBtn">Save</button>
+                <button (click)="closeModal()" class="cancelBtn">Cancel</button>
+            </div>
 
-        <div class="field">
-            <button class="saveBtn">Save</button>
-            <button class="cancelBtn">Cancel</button>
-        </div>
+        </form>
+
+        
     </div>
-
-    <!-- <button (click)="createCard">+ Add new card</button> -->
 </div>

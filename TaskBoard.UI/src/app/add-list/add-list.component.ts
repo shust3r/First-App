@@ -17,10 +17,14 @@ export class AddListComponent {
 
   addList() {
     const name = (document.getElementById('name') as HTMLInputElement).value;
-    this.listSvc.createList(name).subscribe(r =>
-      console.log(r)
-    );
-    window.location.reload();
+    
+    if(name != "" && name != " ")
+      {
+        this.listSvc.createList(name).subscribe(r =>
+          console.log(r)
+        );
+        window.location.reload();
+      }
   }
 
   cancel() {

@@ -51,7 +51,13 @@ export class ListComponent implements OnInit {
     return new Array<number>(len);
   }
 
-  // deleteList(list: IList) {
-  //   this.listSvc.deleteListById(list.id);
-  // }
+  deleteList(id: number) {
+    this.listSvc.deleteListById(id);
+    window.location.reload();
+  }
+
+  editList() {
+    //TODO: implement edit list
+    // window.location.reload();
+  }
 }

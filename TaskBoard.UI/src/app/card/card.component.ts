@@ -15,7 +15,9 @@ export class CardComponent implements OnInit {
   listsToMove: IListNameId[] = [];
   isCardOpened: boolean = false;
   cardId: number;
-  
+  isEditCard: boolean = false;
+  card: ICard;
+
   constructor(private cardSvc: CardService) {}
 
   ngOnInit(): void {
@@ -35,9 +37,15 @@ export class CardComponent implements OnInit {
     });
   }
 
-  openCard(id: number) {
-    this.cardId = id;
+  openCard(card: ICard) {
+    this.cardId = card.id;
+    this.card = card;
     this.isCardOpened = true;
+  }
+
+  editCard(card: ICard) {
+    this.card = card;
+    this.isEditCard = true;
   }
 
   humanizeDueDate(d: Date) : string{
@@ -53,5 +61,11 @@ export class CardComponent implements OnInit {
     {
       this.cardSvc.moveCard(cardId, listId);
     }
+  }
+
+  deleteCard(cardId: number) {
+    this.cardSvc.deleteCard(cardId);
+    
+    window.location.reload();
   }
 }

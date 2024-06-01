@@ -31,4 +31,8 @@ export class CardService {
         "value": `${listId}`
     }]).subscribe();
   }
+  
+  deleteCard(id: number) {
+    this.http.delete(`api/Cards/${id}`).subscribe();
+  }
 }

@@ -1,0 +1,9 @@
+<div class="flexCont">
+    <input class="name" id="name" value="{{listName}}" type="text"
+        onkeydown = "if (event.keyCode == 13) document.getElementById('addClick').click()">
+
+    <div class="btnsGrid">
+        <input (click)="changeList()" id="addClick" class="btn" type="button" value="Save">
+        <input (click)="cancel()" class="btn" type="button" value="Cancel" >
+    </div>
+</div>
