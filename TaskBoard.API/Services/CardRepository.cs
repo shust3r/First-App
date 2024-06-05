@@ -36,6 +36,11 @@ public class CardRepository : ICardRepository
 
     public async Task<Card> AddAsync(Card card)
     {
+        if (card.DueDate.Kind == DateTimeKind.Unspecified)
+        {
+            card.DueDate = DateTime.SpecifyKind((DateTime)card.DueDate, DateTimeKind.Utc);
+        }
+
         await _context.Cards.AddAsync(card);
 
         var list = await _context.Lists
@@ -62,6 +67,11 @@ public class CardRepository : ICardRepository
 
     public async Task<Card> Update(Card card)
     {
+        if (card.DueDate.Kind == DateTimeKind.Unspecified)
+        {
+            card.DueDate = DateTime.SpecifyKind((DateTime)card.DueDate, DateTimeKind.Utc);
+        }
+
         _context.Entry(card).State = EntityState.Modified;
         await _context.SaveChangesAsync();
 

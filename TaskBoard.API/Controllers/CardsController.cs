@@ -79,7 +79,7 @@ public class CardsController : ControllerBase
             Name = card.Name,
             Description = card.Description == null ? "Task description should be unambiguous, accurate, factual." : card.Description,
             Priority = card.Priority,
-            DueDate = card.DueDate == null ? DateTime.UtcNow.AddDays(1) : DateTime.SpecifyKind((DateTime)card.DueDate, DateTimeKind.Utc),
+            DueDate = (DateTime)(card.DueDate == null ? DateTime.UtcNow.AddDays(1) : card.DueDate),
             ListId = listId
         };
 
@@ -103,7 +103,7 @@ public class CardsController : ControllerBase
         {
             return NotFound();
         }
-        
+
         await _activityService.AddActivities(card, patchDocument);
 
         var cardToPatch = _mapper.Map<CardForUpdateDto>(card);
