@@ -39,6 +39,7 @@ export class ListComponent implements OnInit {
 
   openCreate(listId: number) {
     this.listIdForCardCreation = listId;
+    console.log(this.listIdForCardCreation);
     this.isCreateCardOpened = true;
   }
 

@@ -13,6 +13,7 @@ import { CardDetailsComponent } from './card-details/card-details.component';
 import { AddListComponent } from './add-list/add-list.component';
 import { EditListComponent } from './edit-list/edit-list.component';
 import { FormsModule } from '@angular/forms';
+import { EditCardComponent } from './edit-card/edit-card.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     CardDetailsComponent,
     AddListComponent,
     EditListComponent,
+    EditCardComponent,
   ],
   imports: [
     BrowserModule,

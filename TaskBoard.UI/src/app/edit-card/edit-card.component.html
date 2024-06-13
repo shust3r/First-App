@@ -9,37 +9,36 @@
         <form class="form">
 
             <div class="field name">
-                <input name="name" [(ngModel)]="newCard.name" placeholder="Card Name" type="text"
+                <input name="name" [(ngModel)]="changedCard.name" placeholder="Card Name" type="text"
                     required minlength="1" maxlength="50" class="cardName">
             </div>
 
             <div class="field">
                 <label for="list-select">List </label>
-                <select name="listId" class="select" id="list-select" [(ngModel)]="newCard.listId">
-                    <!-- <option value="{{currentList.id}}">{{currentList.name}}</option> -->
-                    <option *ngFor="let list of listNamesWithIds" value="{{list.id}}">{{list.name}}</option>
+                <select name="listId" class="select" id="list-select" [(ngModel)]="changedCard.listId">
+                    <option *ngFor="let list of listNamesWithIds" value="{{list.id}}" required>{{list.name}}</option>
                 </select>
             </div>
 
             <div class="field dueDate">
                 <label for="dueDate">Due Date</label>
-                <input class="select" type="date" id="dueDate"  name="dueDate" [(ngModel)]="newCard.dueDate" required>
+                <input class="select" type="date" id="dueDate"  name="dueDate" [(ngModel)]="changedCard.dueDate" required>
             </div>
 
             <div class="field priority">
                 <label for="prior-select">Priority</label>
-                <select name="priority" id="prior-select" class="select" [(ngModel)]="newCard.priority">
+                <select name="priority" id="prior-select" class="select" [(ngModel)]="changedCard.priority">
                     <option *ngFor="let prior of priorities" value="{{prior.id}}" required>{{prior.text}}</option>
                 </select>
             </div>
 
             <div class="field">
                 <label class="descr" for="descr">Description</label>
-                <input class="description" type="text" id="descr" name="descr" [(ngModel)]="newCard.description" required placeholder="Write some information"/>
+                <input class="description" type="text" id="descr" name="descr" [(ngModel)]="changedCard.description" required placeholder="Write some information"/>
             </div>
 
             <div class="field">
-                <button (click)="createCard()" type="submit" class="saveBtn">Save</button>
+                <button (click)="changeCard()" type="submit" class="saveBtn">Save</button>
                 <button (click)="closeModal()" class="cancelBtn">Cancel</button>
             </div>
 

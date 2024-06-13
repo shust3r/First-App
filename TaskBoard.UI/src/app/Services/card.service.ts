@@ -1,8 +1,8 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICard } from '../Interfaces/ICard';
 import { Observable } from 'rxjs';
-import { error } from 'node:console';
+import { ICardPatch } from '../Interfaces/ICardPatch';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,68 @@ export class CardService {
         "op": "replace",
         "value": `${listId}`
     }]).subscribe();
+  }
+
+  changeCard(newCard: ICard, oldCard: ICard) {
+    let operationCount = 0;
+    let patches: ICardPatch[] = [];
+
+    if(newCard.name != oldCard.name)
+      {
+        let dueD: ICardPatch = {
+          operationType: operationCount,
+          path: "Name",
+          op: "replace",
+          value: `${newCard.name}`
+        }
+        operationCount++;
+        patches.push(dueD);
+      }
+    if(newCard.listId != oldCard.listId)
+      {
+        let dueD: ICardPatch = {
+          operationType: operationCount,
+          path: "listId",
+          op: "replace",
+          value: `${newCard.listId}`
+        }
+        operationCount++;
+        patches.push(dueD);
+      }
+    if(newCard.priority != oldCard.priority)
+      {
+        let dueD: ICardPatch = {
+          operationType: operationCount,
+          path: "Priority",
+          op: "replace",
+          value: `${newCard.priority}`
+        }
+        operationCount++;
+        patches.push(dueD);
+      }
+    if(newCard.description != oldCard.description)
+      {
+        let dueD: ICardPatch = {
+          operationType: operationCount,
+          path: "Description",
+          op: "replace",
+          value: `${newCard.description}`
+        }
+        operationCount++;
+        patches.push(dueD);
+      }
+    if(newCard.dueDate != undefined && newCard.dueDate != oldCard.dueDate)
+      {
+        let dueD: ICardPatch = {
+          operationType: operationCount,
+          path: "dueDate",
+          op: "replace",
+          value: `${newCard.dueDate}`
+        }
+        patches.push(dueD);
+      }
+    
+    this.http.patch(`api/Cards/${oldCard.id}`, patches).subscribe();
   }
   
   deleteCard(id: number) {

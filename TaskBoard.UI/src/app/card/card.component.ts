@@ -54,9 +54,6 @@ export class CardComponent implements OnInit {
   }
 
   moveCard(cardId: number, listId: number) {
-    console.log("List: " + listId);
-    console.log("Card: "  + cardId);
-
     if(cardId != 0 && listId != 0)
     {
       this.cardSvc.moveCard(cardId, listId);
