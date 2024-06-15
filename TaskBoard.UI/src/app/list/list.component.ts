@@ -37,9 +37,8 @@ export class ListComponent implements OnInit {
     })
   }
 
-  openCreate(listId: number) {
+  openCreateCard(listId: number) {
     this.listIdForCardCreation = listId;
-    console.log(this.listIdForCardCreation);
     this.isCreateCardOpened = true;
   }
 
@@ -55,10 +54,5 @@ export class ListComponent implements OnInit {
   deleteList(id: number) {
     this.listSvc.deleteListById(id);
     window.location.reload();
-  }
-
-  editList() {
-    //TODO: implement edit list
-    // window.location.reload();
   }
 }
