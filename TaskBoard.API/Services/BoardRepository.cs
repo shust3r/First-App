@@ -13,24 +13,20 @@ public class BoardRepository : IBoardRepository
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public async Task<IEnumerable<Board>> GetAllAsync()
+    public async Task<IEnumerable<Board>> GetAllWithoutDetails()
     {
         var all = await _context.Boards
             .Include(b => b.Lists)
-            .ThenInclude(l => l.Cards)
-            .ThenInclude(c => c.Activities)
             .ToListAsync();
 
         return all;
     }
 
-    public async Task<Board?> GetByIdAsync(int boardId)
+    public async Task<Board?> GetByIdWithoutDetails(int boardId)
     {
         var board = await _context.Boards
-            .Include(b => b.Lists)
-            .ThenInclude(l => l.Cards)
-            .ThenInclude(c => c.Activities)
             .Where(b => b.Id == boardId)
+            .Include(b => b.Lists)
             .FirstOrDefaultAsync();
 
         return board;

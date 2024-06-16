@@ -14,7 +14,7 @@ public class TaskBoardContext : DbContext
     {
         modelBuilder.Entity<Board>()
             .HasData(
-        new Board("First Board")
+        new Board("Main Board")
         {
             Id = 1,
             Lists = new List<List>()
@@ -28,19 +28,19 @@ public class TaskBoardContext : DbContext
             BoardId = 1,
             Cards = new List<Card>()
         },
-        new List("Second List")
+        new List("Code")
         {
             Id = 2,
             BoardId = 1,
             Cards = new List<Card>()
         },
-        new List("Third List")
+        new List("Not quite yet")
         {
             Id = 3,
             BoardId = 1,
             Cards = new List<Card>()
         },
-        new List("Fourth List")
+        new List("Some other stuff")
         {
             Id = 4,
             BoardId = 1,
@@ -49,7 +49,7 @@ public class TaskBoardContext : DbContext
 
         modelBuilder.Entity<Card>()
             .HasData(
-        new Card("Card Name 1", "Task description should be unambiguous, accurate, factual.")
+        new Card("Make Interesting Card", "Some Interesting description")
         {
             Id = 1,
             Priority = 1,
@@ -57,7 +57,7 @@ public class TaskBoardContext : DbContext
             ListId = 1,
             Activities = new List<Activity>()
         },
-        new Card("Card 2", "Task description should be unambiguous, accurate, factual.")
+        new Card("Make Tests", "Testers want to sleep...")
         {
             Id = 2,
             Priority = 2,
@@ -81,25 +81,17 @@ public class TaskBoardContext : DbContext
             ListId = 1,
             Activities = new List<Activity>()
         },
-        new Card("Card Name 5", "Task description should be unambiguous, accurate, factual.")
+        new Card("Patch the card", "Try to Patch the card with ID 13.")
         {
             Id = 5,
-            Priority = 2,
-            DueDate = DateTime.UtcNow.AddDays(1),
-            ListId = 1,
-            Activities = new List<Activity>()
-        },
-        new Card("Card 6", "Task description should be unambiguous, accurate, factual.")
-        {
-            Id = 6,
             Priority = 3,
             DueDate = DateTime.UtcNow.AddDays(1),
             ListId = 2,
             Activities = new List<Activity>()
         },
-        new Card("Card Name 7", "Task description should be unambiguous, accurate, factual.")
+        new Card("Clean the code", "Clean ALL the insufficient code before commit")
         {
-            Id = 7,
+            Id = 6,
             Priority = 1,
             DueDate = DateTime.UtcNow.AddDays(4),
             ListId = 2,
@@ -107,63 +99,71 @@ public class TaskBoardContext : DbContext
         },
         new Card("Card 8", "Task description should be unambiguous, accurate, factual.")
         {
-            Id = 8,
+            Id = 7,
             Priority = 2,
             DueDate = DateTime.UtcNow.AddDays(4),
             ListId = 2,
             Activities = new List<Activity>()
         },
-        new Card("Card Name 9", "Task description should be unambiguous, accurate, factual.")
+        new Card("Dance with a cat", "Make an ritual dance with a cat")
         {
-            Id = 9,
-            Priority = 3,
-            DueDate = DateTime.UtcNow.AddDays(4),
-            ListId = 2,
-            Activities = new List<Activity>()
-        },
-        new Card("Card 10", "Task description should be unambiguous, accurate, factual.")
-        {
-            Id = 10,
-            Priority = 1,
-            DueDate = DateTime.UtcNow.AddDays(4),
-            ListId = 2,
-            Activities = new List<Activity>()
-        },
-        new Card("Card 11", "Task description should be unambiguous, accurate, factual.")
-        {
-            Id = 11,
+            Id = 8,
             Priority = 1,
             DueDate = DateTime.UtcNow.AddDays(5),
             ListId = 3,
             Activities = new List<Activity>()
         },
-        new Card("Card 12", "Task description should be unambiguous, accurate, factual.")
+        new Card("Summon undead", "Summon the undead warrior to defend your planet")
         {
-            Id = 12,
+            Id = 9,
             Priority = 1,
             DueDate = DateTime.UtcNow.AddDays(5),
+            ListId = 3,
+            Activities = new List<Activity>()
+        },
+        new Card("Conquer the world", "Make undesputable dominance over your world.")
+        {
+            Id = 10,
+            Priority = 1,
+            DueDate = DateTime.UtcNow.AddDays(3),
+            ListId = 3,
+            Activities = new List<Activity>()
+        },
+        new Card("Do something", "Task description should be unambiguous, accurate, factual.")
+        {
+            Id = 11,
+            Priority = 2,
+            DueDate = DateTime.UtcNow.AddDays(1),
             ListId = 4,
             Activities = new List<Activity>()
         },
-        new Card("Card 13", "Task description should be unambiguous, accurate, factual.")
+        new Card("Card 12", "Task description should be unambiguous, accurate, factual.")
+        {
+            Id = 12,
+            Priority = 3,
+            DueDate = DateTime.UtcNow.AddDays(4),
+            ListId = 4,
+            Activities = new List<Activity>()
+        },
+        new Card("Fix the Activity UI", "Task description should be unambiguous, accurate, factual.")
         {
             Id = 13,
             Priority = 1,
-            DueDate = DateTime.UtcNow.AddDays(3),
+            DueDate = DateTime.UtcNow.AddDays(4),
             ListId = 4,
             Activities = new List<Activity>()
         });
 
         modelBuilder.Entity<Activity>()
             .HasData(
-            new Activity("added", string.Empty, "Card Name 1", "Urgent", "Card Name 1")
+            new Activity("added", string.Empty, "Make Interesting Card", "Urgent", "Make Interesting Card")
             {
                 Id = 1,
                 OperationDate = DateTime.UtcNow,
                 ListId = 1,
                 CardId = 1
             },
-            new Activity("added", string.Empty, "Card 2", "Urgent", "Card 2")
+            new Activity("added", string.Empty, "Make Tests", "Urgent", "Make Tests")
             {
                 Id = 2,
                 OperationDate = DateTime.UtcNow,
@@ -184,63 +184,63 @@ public class TaskBoardContext : DbContext
                 ListId = 1,
                 CardId = 4
             },
-            new Activity("added", string.Empty, "Card Name 5", "Urgent", "Card Name 5")
+            new Activity("added", string.Empty, "Patch the card", "Code", "Patch the card")
             {
                 Id = 5,
                 OperationDate = DateTime.UtcNow,
-                ListId = 1,
+                ListId = 2,
                 CardId = 5
             },
-            new Activity("added", string.Empty, "Card 6", "Second List", "Card 6")
+            new Activity("added", string.Empty, "Clean the code", "Code", "Clean the code")
             {
                 Id = 6,
                 OperationDate = DateTime.UtcNow,
                 ListId = 2,
                 CardId = 6
             },
-            new Activity("added", string.Empty, "Card Name 7", "Second List", "Card Name 7")
+            new Activity("added", string.Empty, "Card 8", "Code", "Card 8")
             {
                 Id = 7,
                 OperationDate = DateTime.UtcNow,
                 ListId = 2,
                 CardId = 7
             },
-            new Activity("added", string.Empty, "Card 8", "Second List", "Card 8")
+            new Activity("added", string.Empty, "Dance with a cat", "Not quite yet", "Dance with a cat")
             {
                 Id = 8,
                 OperationDate = DateTime.UtcNow,
-                ListId = 2,
+                ListId = 3,
                 CardId = 8
             },
-            new Activity("added", string.Empty, "Card Name 9", "Second List", "Card Name 9")
+            new Activity("added", string.Empty, "Summon undead", "Not quite yet", "Summon undead")
             {
                 Id = 9,
                 OperationDate = DateTime.UtcNow,
-                ListId = 2,
+                ListId = 3,
                 CardId = 9
             },
-            new Activity("added", string.Empty, "Card 10", "Second List", "Card 10")
+            new Activity("added", string.Empty, "Conquer the world", "Not quite yet", "Conquer the world")
             {
                 Id = 10,
                 OperationDate = DateTime.UtcNow,
-                ListId = 2,
+                ListId = 3,
                 CardId = 10
             },
-            new Activity("added", string.Empty, "Card 11", "Third List", "Card 11")
+            new Activity("added", string.Empty, "Do something", "Some other stuff", "Do something")
             {
                 Id = 11,
                 OperationDate = DateTime.UtcNow,
-                ListId = 3,
+                ListId = 4,
                 CardId = 11
             },
-            new Activity("added", string.Empty, "Card 12", "Fourth List", "Card 12")
+            new Activity("added", string.Empty, "Card 12", "Some other stuff", "Card 12")
             {
                 Id = 12,
                 OperationDate = DateTime.UtcNow,
                 ListId = 4,
                 CardId = 12
             },
-            new Activity("added", string.Empty, "Fix Activity UI", "Fourth List", "Card Name 13")
+            new Activity("added", string.Empty, "Fix the Activity UI", "Some other stuff", "Fix the Activity UI")
             {
                 Id = 13,
                 OperationDate = DateTime.UtcNow,

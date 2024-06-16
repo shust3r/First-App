@@ -29,7 +29,8 @@ public class BoardsController : ControllerBase
     {
         try
         {
-            var boards = await _boardRepo.GetAllAsync();
+            var boards = await _boardRepo.GetAllWithoutDetails();
+
             if (!boards.Any())
             {
                 return NotFound();
@@ -48,7 +49,7 @@ public class BoardsController : ControllerBase
     {
         try
         {
-            var boards = await _boardRepo.GetByIdAsync(id);
+            var boards = await _boardRepo.GetByIdWithoutDetails(id);
             if (boards is null)
             {
                 return NotFound();
@@ -66,7 +67,7 @@ public class BoardsController : ControllerBase
     public async Task<ActionResult> UpdateBoard(int boardId,
         JsonPatchDocument<BoardForUpdateDto> patchDocument)
     {
-        var board = await _boardRepo.GetByIdAsync(boardId);
+        var board = await _boardRepo.GetByIdWithoutDetails(boardId);
         if (board is null)
         {
             return NotFound();
