@@ -63,11 +63,11 @@ public class BoardsController : ControllerBase
         }
     }
 
-    [HttpPatch("{boardId}")]
-    public async Task<ActionResult> UpdateBoard(int boardId,
+    [HttpPatch("{id}")]
+    public async Task<ActionResult> UpdateBoard(int id,
         JsonPatchDocument<BoardForUpdateDto> patchDocument)
     {
-        var board = await _boardRepo.GetByIdWithoutDetails(boardId);
+        var board = await _boardRepo.GetByIdWithoutDetails(id);
         if (board is null)
         {
             return NotFound();
@@ -103,7 +103,7 @@ public class BoardsController : ControllerBase
 
         var addedBoard = await _boardRepo.AddAsync(_mapper.Map<Board>(boardToAdd));
 
-        return CreatedAtRoute("GetList",
+        return CreatedAtRoute("GetBoard",
             new
             {
                 id = addedBoard.Id
@@ -111,10 +111,10 @@ public class BoardsController : ControllerBase
             addedBoard);
     }
 
-    [HttpDelete("{boardId}")]
-    public async Task<ActionResult> DeleteBoard(int boardId)
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteBoard(int id)
     {
-        await _boardRepo.Delete(boardId);
+        await _boardRepo.Delete(id);
         return NoContent();
     }
 }

@@ -36,12 +36,12 @@ public class ActivitiesController : ControllerBase
         }
     }
 
-    [HttpGet("{id}", Name = "GetActivities")]
-    public async Task<ActionResult<ActivityDto>> GetByCardId(int id)
+    [HttpGet("{boardId}", Name = "GetActivities")]
+    public async Task<ActionResult<ActivityDto>> GetByBoardId(int boardId)
     {
         try
         {
-            var list = await _actRepo.GeByCardIdAsync(id);
+            var list = await _actRepo.GeByBoardIdAsync(boardId);
             if (list is null)
             {
                 return NotFound();

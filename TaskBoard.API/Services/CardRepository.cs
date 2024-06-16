@@ -87,11 +87,6 @@ public class CardRepository : ICardRepository
         {
             return card;
         }
-        
-        var list = await _context.Lists
-           .Where(l => l.Id == card.ListId)
-           .FirstOrDefaultAsync();
-
 
         _context.Cards.Remove(card);
         await _context.SaveChangesAsync();

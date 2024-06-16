@@ -22,14 +22,24 @@ public class ActivityRepository : IActivityRepository
         return all;
     }
 
-    public async Task<IEnumerable<Activity>> GeByCardIdAsync(int cardId)
+    public async Task<IEnumerable<Activity>> GeByBoardIdAsync(int boardId)
     {
-        var all = await _context.Activities
-            .OrderByDescending(a => a.OperationDate)
-            .Where(a => a.CardId == cardId)
+        var listIds = await _context.Lists
+            .Where(l => l.BoardId == boardId)
+            .Select(l => l.Id)
             .ToListAsync();
 
-        return all;
+        if (listIds is null)
+        {
+            return Enumerable.Empty<Activity>();
+        }
+
+        var activities = await _context.Activities
+            .Where(a => listIds.Contains(a.ListId))
+            .OrderByDescending(a => a.OperationDate)
+            .ToListAsync();
+
+        return activities;
     }
 
     public async Task AddAsync(Activity activity)
