@@ -13,7 +13,7 @@ export class BoardHistoryComponent implements OnInit {
   activities: IActivity[] = [];
   activitiesToShow: IActivity[] = [];
   currentPage: number = 0;
-  activitiesAmount: number = 7;
+  activitiesAmount: number = 6;
   endIndex: number = this.activitiesAmount;
 
   constructor(
