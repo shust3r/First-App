@@ -13,8 +13,4 @@ export class ActivityService {
   getActivities(): Observable<IActivity[]> {
     return this.http.get<IActivity[]>('api/activities');
   }
-
-  // getActivitiesById(cardId: number): Observable<IActivity[]> {
-  //   return this.http.get<IActivity[]>('api/activities/' + cardId);
-  // }
 }
