@@ -9,26 +9,13 @@
   flex-direction: row;
 }
 
-.name {
-  flex: 1;
-  padding-left: 10px;
-}
-
-.boardsBtn {
-  position: relative;
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  border: 1px black solid;
-  margin-right: 10px;
-  margin-left: 10px;
-  border-radius: 5px;
-  bottom: 5px;
-}
-
 .historyBtn {
-  position: relative;
-  right: 10px;
+  position: fixed;
+  font-size: 17px;
+  border-radius: 5px;
+  border: 2px solid gainsboro;
+  background-color: white;
+  padding: 5px 15px;
+  right: 25px;
   top: 30px;
-  height: 20px;
 }

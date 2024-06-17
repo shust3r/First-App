@@ -70,11 +70,12 @@
 
 .moreBtn {
     position: relative;
+    border: 2px solid gainsboro;
+    background-color: white;
     width: 90%;
     height: 50px;
     left: 5%;
-    top: 10%;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 @keyframes animateright {

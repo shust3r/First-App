@@ -10,6 +10,7 @@ export class ActivityService {
 
   constructor(private http: HttpClient) { }
 
+  //TODO: adjust the getActivities() to use the "boardId" variable
   getActivities(): Observable<IActivity[]> {
     return this.http.get<IActivity[]>('api/activities');
   }
