@@ -21,7 +21,7 @@ public class ListRepository : IListRepository
         return all;
     }
 
-    public async Task<IEnumerable<List>> GetAllAsync()
+    public async Task<IEnumerable<List>> GetAllWithDetailsAsync()
     {
         var all = await _context.Lists
             .Include(l => l.Cards)

@@ -31,7 +31,7 @@ public class ListsController : ControllerBase
     {
         try
         {
-            var lists = await _repo.GetAllAsync();
+            var lists = await _repo.GetAllWithDetailsAsync();
             if (!lists.Any())
             {
                 return NotFound();
@@ -50,7 +50,7 @@ public class ListsController : ControllerBase
     {
         try
         {
-            var lists = await _listSvc.GetAllListNamesWithIs();
+            var lists = await _listSvc.GetAllListNamesWithId();
             if (!lists.Any())
             {
                 return NotFound();

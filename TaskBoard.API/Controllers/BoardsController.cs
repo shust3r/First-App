@@ -63,6 +63,24 @@ public class BoardsController : ControllerBase
         }
     }
 
+    [HttpPost]
+    public async Task<ActionResult<BoardDto>> CreateBoard(BoardForCreationDto board)
+    {
+        var boardToAdd = new BoardDto()
+        {
+            Name = board.Name
+        };
+
+        var addedBoard = await _boardRepo.AddAsync(_mapper.Map<Board>(boardToAdd));
+
+        return CreatedAtRoute("GetBoard",
+            new
+            {
+                id = addedBoard.Id
+            },
+            addedBoard);
+    }
+
     [HttpPatch("{id}")]
     public async Task<ActionResult> UpdateBoard(int id,
         JsonPatchDocument<BoardForUpdateDto> patchDocument)
@@ -91,24 +109,6 @@ public class BoardsController : ControllerBase
         await _boardRepo.Update(board);
 
         return NoContent();
-    }
-
-    [HttpPost]
-    public async Task<ActionResult<BoardDto>> CreateBoard(BoardForCreationDto board)
-    {
-        var boardToAdd = new BoardDto()
-        {
-            Name = board.Name
-        };
-
-        var addedBoard = await _boardRepo.AddAsync(_mapper.Map<Board>(boardToAdd));
-
-        return CreatedAtRoute("GetBoard",
-            new
-            {
-                id = addedBoard.Id
-            },
-            addedBoard);
     }
 
     [HttpDelete("{id}")]

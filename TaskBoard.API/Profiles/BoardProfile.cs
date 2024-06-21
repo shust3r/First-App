@@ -10,5 +10,7 @@ public class BoardProfile : Profile
     {
         CreateMap<BoardForCreationDto, Board>();
         CreateMap<BoardForUpdateDto, Board>();
+        CreateMap<BoardDto, Board>();
+        CreateMap<Board, BoardForUpdateDto>();
     }
 }

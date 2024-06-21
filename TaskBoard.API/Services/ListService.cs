@@ -11,7 +11,7 @@ public class ListService
         _listRepo = listRepo ?? throw new ArgumentNullException(nameof(listRepo));
     }
 
-    public async Task<IEnumerable<ListWithoutDetailsDto>> GetAllListNamesWithIs()
+    public async Task<IEnumerable<ListWithoutDetailsDto>> GetAllListNamesWithId()
     {
         var all = await _listRepo.GetAllWithoutDetailsAsync();
 
