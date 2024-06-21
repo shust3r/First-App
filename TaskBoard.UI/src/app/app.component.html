@@ -2,14 +2,10 @@
 
   <div class="head">
     <app-board></app-board>
-    <input type="button"(click)="switchHistory()" class="historyBtn" value="↺ History">
   </div>
 
   <app-list></app-list>
 
 </div>
 
-<app-board-history
-  [hideBtn]="hideHistory" 
-  [ngStyle]="{'display': hideHistory ? 'none' : 'block'}">
-</app-board-history>
+<app-board-history></app-board-history>

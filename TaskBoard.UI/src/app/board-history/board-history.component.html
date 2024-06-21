@@ -1,4 +1,6 @@
-<div class="bg" [ngStyle]="{'display': hideBtn ? 'none' : 'block'}">
+<input  type="button" (click)="switchHistory()" class="historyBtn" value="↺ History">
+
+<div class="bg" [ngStyle]="{'display': !isOpened ? 'none' : 'block'}">
 
     <div class="history">
 

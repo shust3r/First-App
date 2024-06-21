@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ICard } from '../Interfaces/ICard';
 import { IList } from '../Interfaces/IList';
 import { CardService } from '../Services/card.service';
@@ -11,6 +11,7 @@ import { IListNameId } from '../Interfaces/IListNameId';
   styleUrl: './list.component.css'
 })
 export class ListComponent implements OnInit {
+  @Input() boardId : number;
   lists: IList[] = [];
   cards: ICard[] = [];
   isCreateCardOpened: boolean = false;
