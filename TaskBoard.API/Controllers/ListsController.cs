@@ -45,6 +45,25 @@ public class ListsController : ControllerBase
         }
     }
 
+    [HttpGet("{boardId}")]
+    public async Task<ActionResult<ListDto>> GetListsByBoardId(int boardId)
+    {
+        try
+        {
+            var list = await _repo.GetAllByBoardId(boardId);
+            if (list is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(list);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+    }
+
     [HttpGet("Names")]
     public async Task<ActionResult<IEnumerable<ListWithoutDetailsDto>>> GetAllListNamesWithIDs()
     {
@@ -64,42 +83,27 @@ public class ListsController : ControllerBase
         }
     }
 
-    [HttpGet("{id}", Name = "GetList")]
-    public async Task<ActionResult<ListDto>> GetListById(int id)
+    [HttpPost("{boardId}")]
+    public async Task<ActionResult<ListDto>> CreateList(int boardId, ListForCreationDto list)
     {
         try
         {
-            var list = await _repo.GetByIdAsync(id);
-            if (list is null)
+            var listToAdd = new ListDto()
             {
-                return NotFound();
-            }
+                Name = list.Name,
+                BoardId = boardId
+            };
 
-            return Ok(list);
+            var addedList = await _repo.AddAsync(_mapper.Map<Entities.List>(listToAdd));
+
+            var result = await _repo.GetByIdWithoutDetails(addedList.Id);
+            return Ok(result);
         }
         catch (Exception ex)
         {
+
             return StatusCode(500, ex.Message);
         }
-    }
-
-    [HttpPost]
-    public async Task<ActionResult<ListDto>> CreateList(ListForCreationDto list)
-    {
-        var listToAdd = new ListDto()
-        {
-            Name = list.Name,
-            BoardId = 1
-        };
-
-        var addedList = await _repo.AddAsync(_mapper.Map<Entities.List>(listToAdd));
-
-        return CreatedAtRoute("GetList",
-            new
-            {
-                id = addedList.Id
-            },
-            addedList);
     }
 
     [HttpPatch("{listId}")]
@@ -107,7 +111,7 @@ public class ListsController : ControllerBase
         int listId,
         JsonPatchDocument<ListForUpdateDto> patchDocument)
     {
-        var list = await _repo.GetByIdAsync(listId);
+        var list = await _repo.GetByIdWithoutDetails(listId);
         if (list is null)
         {
             return NotFound();

@@ -31,25 +31,24 @@ public class ListRepository : IListRepository
         return all;
     }
 
-    public async Task<List?> GetByIdAsync(int listId)
+    public async Task<IEnumerable<List>> GetAllByBoardId(int boardId)
     {
-        var list = await _context.Lists
+        var all = await _context.Lists
+            .Where(l => l.BoardId == boardId)
             .Include(l => l.Cards)
             .ThenInclude(c => c.Activities)
+            .ToListAsync();
+
+        return all;
+    }
+
+    public async Task<List?> GetByIdWithoutDetails(int listId)
+    {
+        var list = await _context.Lists
             .Where(l => l.Id == listId)
             .FirstOrDefaultAsync();
 
         return list;
-    }
-
-    public async Task<string> GetNameAsync(int listId)
-    {
-        var name = await _context.Lists
-            .Where(l => l.Id == listId)
-            .Select(l => l.Name)
-            .FirstOrDefaultAsync();
-
-        return name;
     }
 
     public async Task<List> AddAsync(List list)

@@ -68,7 +68,7 @@ public class CardsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<CardDto>> CreateCard(int listId, CardForCreationDto card)
     {
-        var list = await _listRepo.GetByIdAsync(listId);
+        var list = await _listRepo.GetByIdWithoutDetails(listId);
         if (list is null)
         {
             return NotFound();
