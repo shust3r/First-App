@@ -24,7 +24,17 @@ public class CardRepository : ICardRepository
         return all;
     }
 
-    public async Task<Card?> GetByIdAsync(int cardId)
+    public async Task<IEnumerable<Card>> GetByBoardIdAsync(int boardId)
+    {
+        var all = await _context.Cards
+            .Where(c => c.BoardId == boardId)
+            .Include(c => c.Activities)
+            .ToListAsync();
+
+        return all;
+    }
+
+    public async Task<Card?> GetByCardIdAsync(int cardId)
     {
         var card = await _context.Cards
             .Include(c => c.Activities)

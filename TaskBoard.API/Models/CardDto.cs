@@ -8,6 +8,7 @@ public class CardDto
     public DateTime DueDate { get; set; }
     public Priority Priority { get; set; }
     public int ListId { get; set; }
+    public int BoardId { get; set; }
 
     public ICollection<ActivityDto> Activities { get; set; }
         = new List<ActivityDto>();

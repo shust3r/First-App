@@ -55,6 +55,7 @@ public class TaskBoardContext : DbContext
             Priority = 1,
             DueDate = DateTime.UtcNow.AddDays(2),
             ListId = 1,
+            BoardId = 1,
             Activities = new List<Activity>()
         },
         new Card("Make Tests", "Testers want to sleep...")
@@ -63,6 +64,7 @@ public class TaskBoardContext : DbContext
             Priority = 2,
             DueDate = DateTime.UtcNow.AddDays(2),
             ListId = 1,
+            BoardId = 1,
             Activities = new List<Activity>()
         },
         new Card("Card Name 3", "Task description should be unambiguous, accurate, factual.")
@@ -71,6 +73,7 @@ public class TaskBoardContext : DbContext
             Priority = 3,
             DueDate = DateTime.UtcNow.AddDays(2),
             ListId = 1,
+            BoardId = 1,
             Activities = new List<Activity>()
         },
         new Card("Card 4", "Task description should be unambiguous, accurate, factual.")
@@ -79,6 +82,7 @@ public class TaskBoardContext : DbContext
             Priority = 1,
             DueDate = DateTime.UtcNow.AddDays(1),
             ListId = 1,
+            BoardId = 1,
             Activities = new List<Activity>()
         },
         new Card("Patch the card", "Try to Patch the card with ID 13.")
@@ -87,6 +91,7 @@ public class TaskBoardContext : DbContext
             Priority = 3,
             DueDate = DateTime.UtcNow.AddDays(1),
             ListId = 2,
+            BoardId = 1,
             Activities = new List<Activity>()
         },
         new Card("Clean the code", "Clean ALL the insufficient code before commit")
@@ -95,6 +100,7 @@ public class TaskBoardContext : DbContext
             Priority = 1,
             DueDate = DateTime.UtcNow.AddDays(4),
             ListId = 2,
+            BoardId = 1,
             Activities = new List<Activity>()
         },
         new Card("Card 8", "Task description should be unambiguous, accurate, factual.")
@@ -103,6 +109,7 @@ public class TaskBoardContext : DbContext
             Priority = 2,
             DueDate = DateTime.UtcNow.AddDays(4),
             ListId = 2,
+            BoardId = 1,
             Activities = new List<Activity>()
         },
         new Card("Dance with a cat", "Make an ritual dance with a cat")
@@ -111,6 +118,7 @@ public class TaskBoardContext : DbContext
             Priority = 1,
             DueDate = DateTime.UtcNow.AddDays(5),
             ListId = 3,
+            BoardId = 1,
             Activities = new List<Activity>()
         },
         new Card("Summon undead", "Summon the undead warrior to defend your planet")
@@ -119,6 +127,7 @@ public class TaskBoardContext : DbContext
             Priority = 1,
             DueDate = DateTime.UtcNow.AddDays(5),
             ListId = 3,
+            BoardId = 1,
             Activities = new List<Activity>()
         },
         new Card("Conquer the world", "Make undesputable dominance over your world.")
@@ -127,6 +136,7 @@ public class TaskBoardContext : DbContext
             Priority = 1,
             DueDate = DateTime.UtcNow.AddDays(3),
             ListId = 3,
+            BoardId = 1,
             Activities = new List<Activity>()
         },
         new Card("Do something", "Task description should be unambiguous, accurate, factual.")
@@ -135,6 +145,7 @@ public class TaskBoardContext : DbContext
             Priority = 2,
             DueDate = DateTime.UtcNow.AddDays(1),
             ListId = 4,
+            BoardId = 1,
             Activities = new List<Activity>()
         },
         new Card("Card 12", "Task description should be unambiguous, accurate, factual.")
@@ -143,6 +154,7 @@ public class TaskBoardContext : DbContext
             Priority = 3,
             DueDate = DateTime.UtcNow.AddDays(4),
             ListId = 4,
+            BoardId = 1,
             Activities = new List<Activity>()
         },
         new Card("Fix the Activity UI", "Task description should be unambiguous, accurate, factual.")
@@ -151,6 +163,7 @@ public class TaskBoardContext : DbContext
             Priority = 1,
             DueDate = DateTime.UtcNow.AddDays(4),
             ListId = 4,
+            BoardId = 1,
             Activities = new List<Activity>()
         });
 

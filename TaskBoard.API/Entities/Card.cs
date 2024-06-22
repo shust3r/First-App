@@ -25,6 +25,9 @@ public class Card
     [ForeignKey("ListId")]
     public int ListId { get; set; }
 
+    [ForeignKey("BoardId")]
+    public int BoardId { get; set; }
+
     public ICollection<Activity> Activities { get; set; }
         = new List<Activity>();
 

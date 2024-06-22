@@ -28,17 +28,30 @@ public class CardsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<CardDto>>> GetAllCards()
+    public async Task<ActionResult<IEnumerable<CardDto>>> GetAllCards(int? boardId)
     {
         try
         {
-            var cards = await _cardRepo.GetAllAsync();
-            if (!cards.Any())
+            if (boardId is null)
             {
-                return NotFound();
+                var cards = await _cardRepo.GetAllAsync();
+                if (!cards.Any())
+                {
+                    return NotFound();
+                }
+             
+                return Ok(cards);
             }
+            else
+            {
+                var cards = await _cardRepo.GetByBoardIdAsync((int)boardId);
+                if (!cards.Any())
+                {
+                    return NotFound();
+                }
 
-            return Ok(cards);
+                return Ok(cards);
+            }
         }
         catch (Exception ex)
         {
@@ -51,7 +64,7 @@ public class CardsController : ControllerBase
     {
         try
         {
-            var card = await _cardRepo.GetByIdAsync(id);
+            var card = await _cardRepo.GetByCardIdAsync(id);
             if (card is null)
             {
                 return NotFound();
@@ -98,7 +111,7 @@ public class CardsController : ControllerBase
         int cardId,
         JsonPatchDocument<CardForUpdateDto> patchDocument)
     {
-        var card = await _cardRepo.GetByIdAsync(cardId);
+        var card = await _cardRepo.GetByCardIdAsync(cardId);
         if (card is null)
         {
             return NotFound();
