@@ -24,7 +24,7 @@ public class CardRepository : ICardRepository
         return all;
     }
 
-    public async Task<IEnumerable<Card>> GetByBoardIdAsync(int boardId)
+    public async Task<IEnumerable<Card>> GetByBoardIdAsync(int? boardId)
     {
         var all = await _context.Cards
             .Where(c => c.BoardId == boardId)

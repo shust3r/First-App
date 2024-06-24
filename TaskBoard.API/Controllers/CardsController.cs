@@ -44,7 +44,7 @@ public class CardsController : ControllerBase
             }
             else
             {
-                var cards = await _cardRepo.GetByBoardIdAsync((int)boardId);
+                var cards = await _cardRepo.GetByBoardIdAsync(boardId);
                 if (!cards.Any())
                 {
                     return NotFound();
