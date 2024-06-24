@@ -14,7 +14,6 @@ import { AddListComponent } from './add-list/add-list.component';
 import { EditListComponent } from './edit-list/edit-list.component';
 import { FormsModule } from '@angular/forms';
 import { EditCardComponent } from './edit-card/edit-card.component';
-import { BoardComponent } from './board/board.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,6 @@ import { BoardComponent } from './board/board.component';
     AddListComponent,
     EditListComponent,
     EditCardComponent,
-    BoardComponent,
   ],
   imports: [
     BrowserModule,

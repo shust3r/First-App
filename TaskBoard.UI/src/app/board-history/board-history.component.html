@@ -2,6 +2,7 @@
 
 <div class="bg" [ngStyle]="{'display': !isOpened ? 'none' : 'block'}">
 
+    <div class="clickable" (click)="isOpened = false"></div>
     <div class="history">
 
         <div class="header">

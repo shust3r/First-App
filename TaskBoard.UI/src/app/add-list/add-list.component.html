@@ -3,12 +3,12 @@
 </div>
 
 <div *ngIf="isFormOpened" class="flexCont">
-    <input class="name" id="name" placeholder="Enter list title..." type="text"
+    <input class="name" id="listName" placeholder="Enter list title..." type="text"
         onkeydown = "if (event.keyCode == 13) document.getElementById('addClick').click()">
 
     <div class="btnsGrid">
         <input (click)="addList()" id="addClick" class="btn" type="button" value="Add list">
-        <input (click)="cancel()"  class="btn" type="button" value="Cancel">
+        <input (click)="cancel()" class="btn" type="button" value="Cancel">
     </div>
 
 </div>

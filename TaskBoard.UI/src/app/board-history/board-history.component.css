@@ -7,7 +7,8 @@
     padding: 5px 15px;
     right: 25px;
     top: 10px;
-  }
+    z-index: -1;
+}
 
 .bg {
     position: fixed;
@@ -20,6 +21,14 @@
     z-index: 1;
 }
 
+.clickable {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 70%;
+    height: 100%;
+}
+
 .history {
     position: fixed;
     animation: animateright 0.4s;
@@ -28,13 +37,12 @@
     width: 30%;
     right: 0;
     top: 0px;
-    z-index: 2;
 }
 
 .header {
     display: flex;
     height: 70px;
-    background-color:lightslategray;
+    background-color: lightslategray;
 }
 
 .hist {
@@ -53,8 +61,7 @@
     right: 25px;
     color: white;
     border: 0;
-    background-color:lightslategray;
-    z-index: 2;
+    background-color: lightslategray;
 }
 
 .activityBg {
@@ -65,19 +72,17 @@
     bottom: 70px;
     width: 30%;
     height: 100%;
-    background-color:#ffffff;
-    z-index: 1;
+    background-color: #ffffff;
 }
 
 .footer {
     position: fixed;
     animation: animateright 0.4s;
-    display: block; 
+    display: block;
     right: 0;
     bottom: 0;
     width: 30%;
     height: 70px;
-    z-index: 2;
 }
 
 .moreBtn {
@@ -91,7 +96,7 @@
 }
 
 @keyframes animateright {
-    
+
     0% {
         right: -600px;
         opacity: 0;

@@ -16,7 +16,6 @@
             <div class="field">
                 <label for="list-select">List </label>
                 <select name="listId" class="select" id="list-select" [(ngModel)]="newCard.listId">
-                    <!-- <option value="{{currentList.id}}">{{currentList.name}}</option> -->
                     <option *ngFor="let list of listNamesWithIds" value="{{list.id}}">{{list.name}}</option>
                 </select>
             </div>

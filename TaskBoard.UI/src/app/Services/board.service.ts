@@ -7,10 +7,6 @@ import { Board } from '../Interfaces/board';
   providedIn: 'root'
 })
 export class BoardService {
-  openedBoard: Board = {
-    id: -1,
-    name: "",
-    lists: null };
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Board[]> {

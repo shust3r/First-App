@@ -9,7 +9,6 @@ import { IActivity } from '../Interfaces/IActivity';
 export class ActivityComponent {
   @Input() activity : IActivity;
 
-
   humanizeDate(d: Date) : string{
     const date: Date = new Date(d);
     return date.toDateString() + " at " + date.toLocaleTimeString();

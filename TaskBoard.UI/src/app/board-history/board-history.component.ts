@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { IActivity } from '../Interfaces/IActivity';
 import { ActivityService } from '../Services/activity.service';
-import { BoardService } from '../Services/board.service';
-
 
 @Component({
   selector: 'app-board-history',
   templateUrl: './board-history.component.html',
   styleUrl: './board-history.component.css'
 })
-export class BoardHistoryComponent implements OnInit {
-  boardId : number;
+export class BoardHistoryComponent implements OnChanges {
+  @Input() boardId : number;
   boardActivities: IActivity[] = [];
   activitiesToShow: IActivity[] = [];
   currentPage: number = 0;
@@ -18,18 +16,14 @@ export class BoardHistoryComponent implements OnInit {
   endIndex: number = this.activitiesAmount;
   isOpened: boolean = false;
 
-  constructor(
-    private boardSvc: BoardService,
-    private actSvc: ActivityService
-  ) {}
+  constructor(private actSvc: ActivityService) { }
 
-  ngOnInit(): void {
-    this.loadActivities(this.boardSvc.openedBoard.id);
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loadActivities(this.boardId);
   }
 
   switchHistory() {
     if(!this.isOpened) {
-      this.boardId = this.boardSvc.openedBoard.id;
       this.showMore();
       this.loadActivities(this.boardId);
       this.isOpened = true;

@@ -1,11 +1,45 @@
 <div class="flex-container">
 
   <div class="head">
-    <app-board></app-board>
+    <div>
+      <div class="dropdown" *ngIf="!isForRenaming && !isForCreating">
+        <button class="dropbtn">{{board.name}}</button>
+        <div class="dropdown-content">
+          <div class="flex-container">
+            <input type="button" class="btn ed" name="Ed" value="Rename" (click)="isForRenaming = true">
+            <input *ngIf="board.id !=1" type="button" class="btn del" name="Del" value="Delete" (click)="deleteBoard()">
+            <input type="button" class="btn" name="Create" value="Add new board" (click)="isForCreating = true">
+          </div>
+          <div *ngFor="let board of boards">
+            <input type="button" class="btn brd" name="Del" value={{board.name}} (click)="switchBoard(board)">
+          </div>
+        </div>
+      </div>
+
+      <div class="toRename" *ngIf="isForRenaming">
+        <input class="brdName" id="name" value="{{board.name}}" type="text">
+
+        <div class="optionBtns">
+          <input (click)="renameBoard()" type="button" id="saveClick" class="optionBtn" value="Save">
+          <input (click)="cancel()" type="button" id="cancelClick" class="optionBtn" value="Cancel">
+        </div>
+      </div>
+
+      <div class="toCreate" *ngIf="isForCreating">
+        <input class="brdName" id="newName" placeholder="Enter new board name" type="text">
+
+        <div class="optionBtns">
+          <input (click)="createBoard()" type="button" id="saveClick" class="optionBtn" value="Create">
+          <input (click)="isForCreating = false" type="button" id="cancelClick" class="optionBtn" value="Cancel">
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <app-list></app-list>
+
+  <app-list [board]="board"></app-list>
 
 </div>
 
-<app-board-history></app-board-history>
+<app-board-history [boardId]="board.id"></app-board-history>

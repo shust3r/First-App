@@ -1,50 +1,33 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ICard } from '../Interfaces/ICard';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { IList } from '../Interfaces/IList';
-import { CardService } from '../Services/card.service';
 import { ListService } from '../Services/list.service';
-import { IListNameId } from '../Interfaces/IListNameId';
+import { Board } from '../Interfaces/board';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
-export class ListComponent implements OnInit {
-  @Input() boardId : number;
+export class ListComponent implements OnChanges {
+  @Input() board: Board;
   lists: IList[] = [];
-  cards: ICard[] = [];
   isCreateCardOpened: boolean = false;
   listIdForCardCreation: number;
-  listNamesWithIds: IListNameId[] = [];
   emptyPillars: number[] = [];
 
   constructor(
-    private cardSvc: CardService,
     private listSvc: ListService
   ) {  }
-  
-  ngOnInit(): void {
-    this.cardSvc.getCards().subscribe(response => {
-      this.cards = response;
-    });
 
-    this.listSvc.getLists().subscribe(response => {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.listSvc.getLists(this.board.id).subscribe(response => {
       this.lists = response;
     });
-
-    this.listSvc.getListNamesWithIds().subscribe( r => {
-      this.listNamesWithIds = r;
-    })
   }
 
   openCreateCard(listId: number) {
     this.listIdForCardCreation = listId;
     this.isCreateCardOpened = true;
-  }
-
-  getFreeSpaceAmount() {
-    const amount = 4 - this.listNamesWithIds.length;
   }
 
   getEmptyLists(): number[] {

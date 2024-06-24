@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CardService } from '../Services/card.service';
 import { ICard } from '../Interfaces/ICard';
 import { IListNameId } from '../Interfaces/IListNameId';
@@ -9,7 +9,7 @@ import { IListNameId } from '../Interfaces/IListNameId';
   styleUrl: './create-card.component.css'
 })
 
-export class CreateCardComponent implements OnInit {
+export class CreateCardComponent implements OnChanges {
   @Input() currentListId: number;
   @Input() listNamesWithIds: IListNameId[];
 
@@ -18,31 +18,13 @@ export class CreateCardComponent implements OnInit {
   newCard : ICard = {
     name: "New card",
     description: "",
-    priority: 1,
-    listId: -1
+    priority: 1
   }
 
   constructor(private cardSvc: CardService){}
-  ngOnInit(): void {
-    // console.log(this.currentListId); //undefined
-      //this.newCard.listId = this.currentListId;
-
-      // this.fixLists();
+  ngOnChanges(changes: SimpleChanges): void {
+    this.newCard.listId = this.currentListId;
   }
-
-  // fixLists() {
-  //   let index: number = -1;
-  //   for (let el of this.listNamesWithIds){
-  //       if(el.id === this.newCard.listId){
-  //       console.log(el.id);
-  //       console.log(this.currentListId);
-  //       this.currentList = el;
-  //       index = this.listNamesWithIds.indexOf(el);
-  //       break;
-  //     }
-  //   }
-  //   delete this.listNamesWithIds[index];
-  // }
 
   createCard() {
     this.cardSvc.createCard(this.newCard).subscribe();

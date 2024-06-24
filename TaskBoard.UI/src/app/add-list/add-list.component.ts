@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ListService } from '../Services/list.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { ListService } from '../Services/list.service';
   styleUrl: './add-list.component.css'
 })
 export class AddListComponent {
+  @Input() boardId: number;
   isFormOpened: boolean = false;
 
   constructor(private listSvc: ListService) {}
@@ -16,11 +17,11 @@ export class AddListComponent {
   }
 
   addList() {
-    const name = (document.getElementById('name') as HTMLInputElement).value;
+    const name = (document.getElementById('listName') as HTMLInputElement).value;
     
     if(name != "" && name != " ")
       {
-        this.listSvc.createList(name).subscribe(r =>
+        this.listSvc.createList(name, this.boardId).subscribe(r =>
           console.log(r)
         );
         window.location.reload();
