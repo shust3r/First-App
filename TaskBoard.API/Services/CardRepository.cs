@@ -18,18 +18,15 @@ public class CardRepository : ICardRepository
     public async Task<IEnumerable<Card>> GetAllAsync()
     {
         var all = await _context.Cards
-            .Include(c => c.Activities)
             .ToListAsync();
 
         return all;
     }
 
-    public async Task<IEnumerable<Card>> GetByListIdAsync(int? listId)
+    public async Task<IEnumerable<Card>> GetByListIdAsync(int listId)
     {
         var all = await _context.Cards
             .Where(c => c.ListId == listId)
-            //Убери актівітіс коли зробиш фронт
-            .Include(c => c.Activities)
             .ToListAsync();
 
         return all;
@@ -49,7 +46,7 @@ public class CardRepository : ICardRepository
     {
         if (card.DueDate.Kind == DateTimeKind.Unspecified)
         {
-            card.DueDate = DateTime.SpecifyKind((DateTime)card.DueDate, DateTimeKind.Utc);
+            card.DueDate = DateTime.SpecifyKind(card.DueDate, DateTimeKind.Utc);
         }
 
         await _context.Cards.AddAsync(card);
@@ -80,7 +77,7 @@ public class CardRepository : ICardRepository
     {
         if (card.DueDate.Kind == DateTimeKind.Unspecified)
         {
-            card.DueDate = DateTime.SpecifyKind((DateTime)card.DueDate, DateTimeKind.Utc);
+            card.DueDate = DateTime.SpecifyKind(card.DueDate, DateTimeKind.Utc);
         }
 
         _context.Entry(card).State = EntityState.Modified;

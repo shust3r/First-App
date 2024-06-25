@@ -42,6 +42,16 @@ public class ActivityRepository : IActivityRepository
         return activities;
     }
 
+    public async Task<IEnumerable<Activity>> GeByCardIdAsync(int cardId)
+    {
+        var activities = await _context.Activities
+            .Where(a => a.CardId == cardId)
+            .OrderByDescending(a => a.OperationDate)
+            .ToListAsync();
+
+        return activities;
+    }
+
     public async Task AddAsync(Activity activity)
     {
         await _context.Activities.AddAsync(activity);

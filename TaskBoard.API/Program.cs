@@ -20,7 +20,6 @@ builder.Services.AddScoped<IListRepository, ListRepository>();
 builder.Services.AddScoped<ICardRepository, CardRepository>();
 builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
 builder.Services.AddScoped<ActivityService>();
-builder.Services.AddScoped<ListService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
