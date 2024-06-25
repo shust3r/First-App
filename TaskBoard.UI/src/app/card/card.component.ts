@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ICard } from '../Interfaces/ICard';
 import { IListNameId } from '../Interfaces/IListNameId';
 import { CardService } from '../Services/card.service';
+import { ActivityService } from '../Services/activity.service';
 
 @Component({
   selector: 'app-card',
@@ -18,10 +19,10 @@ export class CardComponent implements OnInit {
   isEditCard: boolean = false;
   card: ICard;
 
-  constructor(private cardSvc: CardService) {}
+  constructor(private cardSvc: CardService, private actSvc: ActivityService) {}
 
   ngOnInit(): void {
-    this.cardSvc.getCards(this.listId).subscribe( r => {
+    this.cardSvc.getCards(this.listId).subscribe(r => {
       this.cards = r;
     });
 
@@ -42,6 +43,10 @@ export class CardComponent implements OnInit {
   }
 
   openCard(card: ICard) {
+    this.actSvc.getCardActivities(card.id).subscribe(r => {
+      card.activities = r;
+    });
+
     this.cardId = card.id;
     this.card = card;
     this.isCardOpened = true;

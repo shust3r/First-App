@@ -22,13 +22,9 @@ export class BoardHistoryComponent implements OnChanges {
     this.loadActivities(this.boardId);
   }
 
-  switchHistory() {
-    if(!this.isOpened) {
-      this.showMore();
-      this.loadActivities(this.boardId);
-      this.isOpened = true;
-    }
-    else this.isOpened = false;
+  openHistory() {
+    this.showMore();
+    this.isOpened = true;
   }
 
   loadActivities(id: number): void {
@@ -43,10 +39,11 @@ export class BoardHistoryComponent implements OnChanges {
       this.endIndex = this.activitiesAmount;
     }
     else {
-      this.currentPage = this.currentPage + this.activitiesAmount;
+      this.currentPage += this.activitiesAmount;
       this.endIndex += this.activitiesAmount;
     }
-    
-    this.activitiesToShow = this.boardActivities.slice(this.currentPage, this.endIndex);
+
+    this.activitiesToShow = this.boardActivities
+      .slice(this.currentPage, this.endIndex);
   };
 }

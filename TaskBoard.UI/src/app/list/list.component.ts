@@ -15,9 +15,7 @@ export class ListComponent implements OnChanges {
   listIdForCardCreation: number;
   emptyPillars: number[] = [];
 
-  constructor(
-    private listSvc: ListService
-  ) {  }
+  constructor(private listSvc: ListService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.listSvc.getLists(this.board.id).subscribe(response => {

@@ -1,4 +1,4 @@
-<input  type="button" (click)="switchHistory()" class="historyBtn" value="↺ History">
+<input type="button" (click)="openHistory()" class="historyBtn" value="↺ History">
 
 <div class="bg" [ngStyle]="{'display': !isOpened ? 'none' : 'block'}">
 
@@ -7,11 +7,11 @@
 
         <div class="header">
             <h2 class="hist">History</h2>
-            <button class="closeBtn" (click)="switchHistory()">X</button>
+            <button class="closeBtn" (click)="isOpened = false">X</button>
         </div>
-    
+
         <div class="activityBg">
-            
+
             <div *ngFor="let activity of activitiesToShow">
                 <app-activity [activity]="activity"></app-activity>
             </div>
@@ -19,7 +19,9 @@
         </div>
 
         <div class="footer">
-            <button class="moreBtn" (click)="showMore()"><h3>↺ Show more</h3></button>
+            <button class="moreBtn" (click)="showMore()">
+                <h3>↺ Show more</h3>
+            </button>
         </div>
 
     </div>
