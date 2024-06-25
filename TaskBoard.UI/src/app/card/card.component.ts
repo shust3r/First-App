@@ -9,9 +9,9 @@ import { CardService } from '../Services/card.service';
   styleUrl: './card.component.css'
 })
 export class CardComponent implements OnInit {
-  @Input() cards: ICard[];
-  @Input() currentListId: number;
-  @Input() listNamesWithIds: IListNameId[];
+  @Input() listId: number;
+  @Input() lists: IListNameId[];
+  cards: ICard[];
   listsToMove: IListNameId[] = [];
   isCardOpened: boolean = false;
   cardId: number;
@@ -21,7 +21,11 @@ export class CardComponent implements OnInit {
   constructor(private cardSvc: CardService) {}
 
   ngOnInit(): void {
-    this.ListsToMove();
+    this.cardSvc.getCards(this.listId).subscribe( r => {
+      this.cards = r;
+    });
+
+    this.MakeListsToMove();
   }
 
   getPriority(priorityId: number) {
@@ -30,10 +34,10 @@ export class CardComponent implements OnInit {
     if (priorityId == 3) return "High";
   }
 
-  ListsToMove() {
-    this.listNamesWithIds.forEach(element => {
-      if (element.id != this.currentListId)
-        this.listsToMove.push(element);
+  MakeListsToMove() {
+    this.lists.forEach(l => {
+      if (l.id != this.listId)
+        this.listsToMove.push(l);
     });
   }
 
@@ -54,10 +58,7 @@ export class CardComponent implements OnInit {
   }
 
   moveCard(cardId: number, listId: number) {
-    if(cardId != 0 && listId != 0)
-    {
-      this.cardSvc.moveCard(cardId, listId);
-    }
+    this.cardSvc.moveCard(cardId, listId);
   }
 
   deleteCard(cardId: number) {

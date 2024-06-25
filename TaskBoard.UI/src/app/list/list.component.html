@@ -1,51 +1,15 @@
 <div class="gridContainer">
 
-    <div *ngFor="let list of lists">
-      
-      <div *ngIf="list.isOnEdit === undefined">
+  <div *ngFor="let list of lists">
 
-        <div class="listControll">
-        
-          <b>{{list.name}}</b>
-          <b class="listLength">({{list.cards.length}})</b>
-        
-          <div class="dropdown">
-            <button class="dropbtn">...</button>
-            <div class="dropdown-content">
-              <input type="button" class="btn" name="Ed" value="Edit" (click)="list.isOnEdit = true">
-              <input type="button" class="btn" name="Del" value="Delete" (click)="deleteList(list.id)">
-            </div>
-          </div>
-        
-        </div>
-  
-        <div>
-          <button class="addCardBtn" (click)="openCreateCard(list.id)">+ Add new card</button>
-        </div>
+    <app-list-controll [list]="list" [boardLists]="board.lists"></app-list-controll>
 
-      </div>
-
-
-      <div *ngIf="list.isOnEdit === true">
-        <app-edit-list [listName]="list.name" [listId]="list.id"></app-edit-list>
-      </div>
-
-      <div class="pillar">
-        <app-card [currentListId]="list.id" [listNamesWithIds]="board.lists"
-          [cards]="list.cards"
-          [lists]="lists"></app-card>
-      </div>
-      
-    </div>
-
-    <div class="empty pillar" *ngFor="let item of getEmptyLists()">
-      <app-add-list [boardId]="board.id"></app-add-list>
-    </div>
+    <app-card [listId]="list.id" [lists]="board.lists"></app-card>
 
   </div>
 
-<app-create-card
-  [listNamesWithIds]="board.lists"
-  [ngStyle]="{'display': isCreateCardOpened ? 'block' : 'none'}"
-  [currentListId]="listIdForCardCreation">
-</app-create-card>
+  <div class="empty pillar" *ngFor="let item of getEmptyLists()">
+    <app-add-list [boardId]="board.id"></app-add-list>
+  </div>
+
+</div>

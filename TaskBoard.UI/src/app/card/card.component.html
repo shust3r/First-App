@@ -3,8 +3,8 @@
     <div class="card-details">
         <h3>{{card.name}}</h3>
 
-        <div class="dropdown">
-            <button class="dropbtn">...</button>
+        <div class="dropdown options">
+            <button class="dropbtn">≡</button>
               <div class="dropdown-content">
                 <input type="button" class="btn ed" name="Ed" value="Edit" (click)="editCard(card)">
                 <input type="button" class="btn del" name="Del" value="Delete" (click)="deleteCard(card.id)">
@@ -16,18 +16,21 @@
     
         <div class="card-details">{{card.description}}</div>
     
-        <div class="card-details">{{humanizeDueDate(card.dueDate)}}</div>
+        <div class="card-details calendar">{{humanizeDueDate(card.dueDate)}}</div>
     
-        <div class="card-details">{{getPriority(card.priority)}}</div>
+        <div class="card-details priority">● {{getPriority(card.priority)}}</div>
 
     </div>
 
-    <div class="card-details">
-        <select name="move" class="selectMove">
-            <option value="0" name="0">Move to:</option>
-            <option *ngFor="let list of listsToMove" value="list.id">
-            {{list.name}}</option>
-        </select>
+    <div class="move">
+        <div class="dropdown">
+            <button class="selectMove">Move to:</button>
+              <div class="dropdown-content">
+                <input *ngFor="let list of listsToMove" 
+                    type="button" class="btn" value="{{list.name}}"
+                    (click)="moveCard(card.id, list.id)">
+              </div>
+        </div>
     </div>
 
 </div>

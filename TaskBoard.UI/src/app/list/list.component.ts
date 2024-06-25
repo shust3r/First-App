@@ -25,18 +25,8 @@ export class ListComponent implements OnChanges {
     });
   }
 
-  openCreateCard(listId: number) {
-    this.listIdForCardCreation = listId;
-    this.isCreateCardOpened = true;
-  }
-
   getEmptyLists(): number[] {
     const len = 4 - this.lists.length;
     return new Array<number>(len);
-  }
-
-  deleteList(id: number) {
-    this.listSvc.deleteListById(id);
-    window.location.reload();
   }
 }

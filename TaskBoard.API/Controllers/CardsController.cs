@@ -28,11 +28,11 @@ public class CardsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<CardDto>>> GetAllCards(int? boardId)
+    public async Task<ActionResult<IEnumerable<CardDto>>> GetAllCards(int? listId)
     {
         try
         {
-            if (boardId is null)
+            if (listId is null)
             {
                 var cards = await _cardRepo.GetAllAsync();
                 if (!cards.Any())
@@ -44,7 +44,7 @@ public class CardsController : ControllerBase
             }
             else
             {
-                var cards = await _cardRepo.GetByBoardIdAsync(boardId);
+                var cards = await _cardRepo.GetByListIdAsync(listId);
                 if (!cards.Any())
                 {
                     return NotFound();

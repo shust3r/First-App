@@ -12,8 +12,23 @@
   grid-template-columns: 8fr 1fr;
 }
 
+.calendar {
+  margin: 5px 0px;
+}
+
+.priority {
+  background-color: rgba(220, 220, 220, 0.533);
+  border-radius: 15px;
+  text-align: center;
+  margin: 5px 2px;
+  width: fit-content;
+}
+
 .dropdown {
   position:relative;
+}
+
+.options {
   padding: 15px;
 }
 
@@ -21,7 +36,6 @@
   position: relative;
   margin: 0;
   padding: 0;
-  writing-mode: vertical-rl;
   border: none;
   width: 20px;
   height: 20px;
@@ -61,7 +75,15 @@
 .dropdown:hover .dropdown-content {display: block;}
 
 .selectMove {
-  height: 30px;
   width: 95%;
   margin-bottom: 10px;
+  padding: 10px 5px;
+  border: none;
+  border-radius: 5px;
+  font: bold;
+  text-align: left;
+}
+
+.move {
+  padding: 10px 5px;
 }

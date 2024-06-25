@@ -10,8 +10,8 @@ import { ICardPatch } from '../Interfaces/ICardPatch';
 export class CardService {
   constructor(private http: HttpClient) {}
 
-  getCards(boardId: number): Observable<ICard[]> {
-    return this.http.get<ICard[]>(`/api/Cards?boardId=${boardId}`);
+  getCards(listId: number): Observable<ICard[]> {
+    return this.http.get<ICard[]>(`/api/Cards?listId=${listId}`);
   }
 
   getCardById(cardId: number): Observable<ICard> {

@@ -1,0 +1,32 @@
+<div *ngIf="!list.isOnEdit">
+
+    <div class="listControll">
+    
+      <b>{{list.name}}</b>
+      <b class="listLength">({{list.cards.length}})</b>
+    
+      <div class="dropdown">
+        <button class="dropbtn">≡</button>
+        <div class="dropdown-content">
+          <input type="button" class="btn" name="Ed" value="Edit" (click)="list.isOnEdit = true">
+          <input type="button" class="btn" name="Del" value="Delete" (click)="deleteList(list.id)">
+        </div>
+      </div>
+    
+    </div>
+
+    <div>
+      <button class="addCardBtn" (click)="openCreateCard(list.id)">+ Add new card</button>
+    </div>
+
+  </div>
+
+  <div *ngIf="list.isOnEdit">
+    <app-edit-list [listName]="list.name" [listId]="list.id"></app-edit-list>
+  </div>
+
+<app-create-card
+  [listNamesWithIds]="boardLists"
+  [ngStyle]="{'display': isCreateCardOpened ? 'block' : 'none'}"
+  [currentListId]="listIdForCardCreation">
+</app-create-card>

@@ -24,10 +24,11 @@ public class CardRepository : ICardRepository
         return all;
     }
 
-    public async Task<IEnumerable<Card>> GetByBoardIdAsync(int? boardId)
+    public async Task<IEnumerable<Card>> GetByListIdAsync(int? listId)
     {
         var all = await _context.Cards
-            .Where(c => c.BoardId == boardId)
+            .Where(c => c.ListId == listId)
+            //Убери актівітіс коли зробиш фронт
             .Include(c => c.Activities)
             .ToListAsync();
 
