@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   isForCreating: boolean = false;
   board: Board = {
     id: -1,
-    name: "",
+    name: "New Board",
     lists: null };
   
   boards: Board[] = [ this.board ];

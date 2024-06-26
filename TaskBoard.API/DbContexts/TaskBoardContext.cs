@@ -174,91 +174,104 @@ public class TaskBoardContext : DbContext
                 Id = 1,
                 OperationDate = DateTime.UtcNow,
                 ListId = 1,
-                CardId = 1
+                CardId = 1,
+                BoardId = 1
             },
             new Activity("added", string.Empty, "Make Tests", "Urgent", "Make Tests")
             {
                 Id = 2,
                 OperationDate = DateTime.UtcNow,
                 ListId = 1,
-                CardId = 2
+                CardId = 2,
+                BoardId = 1
             },
             new Activity("added", string.Empty, "Card Name 3", "Urgent", "Card Name 3")
             {
                 Id = 3,
                 OperationDate = DateTime.UtcNow,
                 ListId = 1,
-                CardId = 3
+                CardId = 3,
+                BoardId = 1
             },
             new Activity("added", string.Empty, "Card 4", "Urgent", "Card 4")
             {
                 Id = 4,
                 OperationDate = DateTime.UtcNow,
                 ListId = 1,
-                CardId = 4
+                CardId = 4,
+                BoardId = 1
             },
             new Activity("added", string.Empty, "Patch the card", "Code", "Patch the card")
             {
                 Id = 5,
                 OperationDate = DateTime.UtcNow,
                 ListId = 2,
-                CardId = 5
+                CardId = 5,
+                BoardId = 1
             },
             new Activity("added", string.Empty, "Clean the code", "Code", "Clean the code")
             {
                 Id = 6,
                 OperationDate = DateTime.UtcNow,
                 ListId = 2,
-                CardId = 6
+                CardId = 6,
+                BoardId = 1
             },
             new Activity("added", string.Empty, "Card 8", "Code", "Card 8")
             {
                 Id = 7,
                 OperationDate = DateTime.UtcNow,
                 ListId = 2,
-                CardId = 7
+                CardId = 7,
+                BoardId = 1
             },
             new Activity("added", string.Empty, "Dance with a cat", "Not quite yet", "Dance with a cat")
             {
                 Id = 8,
                 OperationDate = DateTime.UtcNow,
                 ListId = 3,
-                CardId = 8
+                CardId = 8,
+                BoardId = 1
             },
             new Activity("added", string.Empty, "Summon undead", "Not quite yet", "Summon undead")
             {
                 Id = 9,
                 OperationDate = DateTime.UtcNow,
                 ListId = 3,
-                CardId = 9
+                CardId = 9,
+                BoardId = 1
             },
             new Activity("added", string.Empty, "Conquer the world", "Not quite yet", "Conquer the world")
             {
                 Id = 10,
                 OperationDate = DateTime.UtcNow,
                 ListId = 3,
-                CardId = 10
+                CardId = 10,
+                BoardId = 1
             },
             new Activity("added", string.Empty, "Do something", "Some other stuff", "Do something")
             {
                 Id = 11,
                 OperationDate = DateTime.UtcNow,
                 ListId = 4,
-                CardId = 11
+                CardId = 11,
+                BoardId = 1
             },
             new Activity("added", string.Empty, "Card 12", "Some other stuff", "Card 12")
             {
                 Id = 12,
                 OperationDate = DateTime.UtcNow,
                 ListId = 4,
-                CardId = 12
+                CardId = 12,
+                BoardId = 1
             },
             new Activity("added", string.Empty, "Fix the Activity UI", "Some other stuff", "Fix the Activity UI")
             {
                 Id = 13,
                 OperationDate = DateTime.UtcNow,
                 ListId = 4,
-                CardId = 13
+                CardId = 13,
+                BoardId = 1
             });
 
         base.OnModelCreating(modelBuilder);

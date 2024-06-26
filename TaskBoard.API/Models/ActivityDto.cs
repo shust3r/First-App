@@ -11,4 +11,5 @@ public class ActivityDto
     public string CardName { get; set; } = string.Empty;
     public int ListId { get; set; }
     public string ListName { get; set; } = string.Empty;
+    public int BoardId { get; set; }
 }

@@ -35,7 +35,6 @@ public class ListRepository : IListRepository
     {
         var all = await _context.Lists
             .Where(l => l.BoardId == boardId)
-            .Include(l => l.Cards)
             .ToListAsync();
 
         return all;

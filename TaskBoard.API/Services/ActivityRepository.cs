@@ -24,18 +24,8 @@ public class ActivityRepository : IActivityRepository
 
     public async Task<IEnumerable<Activity>> GeByBoardIdAsync(int boardId)
     {
-        var listIds = await _context.Lists
-            .Where(l => l.BoardId == boardId)
-            .Select(l => l.Id)
-            .ToListAsync();
-
-        if (listIds is null)
-        {
-            return Enumerable.Empty<Activity>();
-        }
-
         var activities = await _context.Activities
-            .Where(a => listIds.Contains(a.ListId))
+            .Where(a => a.BoardId == boardId)
             .OrderByDescending(a => a.OperationDate)
             .ToListAsync();
 

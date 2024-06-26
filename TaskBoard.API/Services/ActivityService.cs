@@ -29,7 +29,8 @@ public class ActivityService
                     new Activity("moved", list!.Name, op.value.ToString()!, op.value.ToString()!, card.Name)
                     {
                         OperationDate = DateTime.UtcNow,
-                        CardId = card.Id
+                        CardId = card.Id,
+                        BoardId = card.BoardId
                     });
                     break;
                 case "NAME":
@@ -37,7 +38,8 @@ public class ActivityService
                     new Activity("renamed", card.Name, op.value.ToString()!, list!.Name, op.value.ToString()!)
                     {
                         OperationDate = DateTime.UtcNow,
-                        CardId = card.Id
+                        CardId = card.Id,
+                        BoardId = card.BoardId
                     });
                     break;
                 case "DESCRIPTION":
@@ -45,7 +47,8 @@ public class ActivityService
                     new Activity("changed the description", card.Description, op.value.ToString()!, list!.Name, card.Name)
                     {
                         OperationDate = DateTime.UtcNow,
-                        CardId = card.Id
+                        CardId = card.Id,
+                        BoardId = card.BoardId
                     });
                     break;
                 case "PRIORITY":
@@ -53,7 +56,8 @@ public class ActivityService
                     new Activity("changed the priority", card.Priority.ToString(), op.value.ToString()!, list!.Name, card.Name)
                     {
                         OperationDate = DateTime.UtcNow,
-                        CardId = card.Id
+                        CardId = card.Id,
+                        BoardId = card.BoardId
                     });
                     break;
                 case "DUEDATE":
@@ -61,7 +65,8 @@ public class ActivityService
                     new Activity("changed the due date", card.DueDate.ToString(), op.value.ToString()!, list!.Name, card.Name)
                     {
                         OperationDate = DateTime.UtcNow,
-                        CardId = card.Id
+                        CardId = card.Id,
+                        BoardId = card.BoardId
                     });
                     break;
             }

@@ -26,6 +26,9 @@ public class Activity
 
     [ForeignKey("CardId")]
     public int CardId { get; set; }
+
+    [ForeignKey("BoardId")]
+    public int BoardId { get; set; }
     
     public string CardName { get; set; }
 

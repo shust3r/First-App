@@ -65,7 +65,8 @@ public class CardRepository : ICardRepository
         {
             OperationDate = DateTime.UtcNow,
             CardId = card.Id,
-            ListId = card.ListId
+            ListId = card.ListId,
+            BoardId = list.BoardId
         };
 
         await _repo.AddAsync(activity);

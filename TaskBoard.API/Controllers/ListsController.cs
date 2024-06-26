@@ -27,7 +27,7 @@ public class ListsController : ControllerBase
     {
         try
         {
-            var lists = await _repo.GetAllWithDetailsAsync();
+            var lists = await _repo.GetAllWithoutDetailsAsync();
             if (!lists.Any())
             {
                 return NotFound();
