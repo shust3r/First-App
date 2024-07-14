@@ -18,15 +18,16 @@ public class ActivityService
     public async Task AddActivities(Card card, JsonPatchDocument<CardForUpdateDto> patchDocument)
     {
         var activities = new List<Activity>();
-        var list = await _listRepo.GetByIdWithoutDetails(card.ListId);
+        var oldList = await _listRepo.GetByIdWithoutDetails(card.ListId);
 
         foreach (var op in patchDocument.Operations)
         {
             switch (op.path.ToUpperInvariant())
             {
                 case "LISTID":
+                    var newList = await _listRepo.GetByIdWithoutDetails(Convert.ToInt32(op.value));
                     activities.Add(
-                    new Activity("moved", list!.Name, op.value.ToString()!, op.value.ToString()!, card.Name)
+                    new Activity("moved", oldList!.Name, newList!.Name, op.value.ToString()!, card.Name)
                     {
                         OperationDate = DateTime.UtcNow,
                         CardId = card.Id,
@@ -35,7 +36,7 @@ public class ActivityService
                     break;
                 case "NAME":
                     activities.Add(
-                    new Activity("renamed", card.Name, op.value.ToString()!, list!.Name, op.value.ToString()!)
+                    new Activity("renamed", card.Name, op.value.ToString()!, oldList!.Name, op.value.ToString()!)
                     {
                         OperationDate = DateTime.UtcNow,
                         CardId = card.Id,
@@ -44,7 +45,7 @@ public class ActivityService
                     break;
                 case "DESCRIPTION":
                     activities.Add(
-                    new Activity("changed the description", card.Description, op.value.ToString()!, list!.Name, card.Name)
+                    new Activity("changed the description", card.Description, op.value.ToString()!, oldList!.Name, card.Name)
                     {
                         OperationDate = DateTime.UtcNow,
                         CardId = card.Id,
@@ -53,7 +54,7 @@ public class ActivityService
                     break;
                 case "PRIORITY":
                     activities.Add(
-                    new Activity("changed the priority", card.Priority.ToString(), op.value.ToString()!, list!.Name, card.Name)
+                    new Activity("changed the priority", card.Priority.ToString(), op.value.ToString()!, oldList!.Name, card.Name)
                     {
                         OperationDate = DateTime.UtcNow,
                         CardId = card.Id,
@@ -62,7 +63,7 @@ public class ActivityService
                     break;
                 case "DUEDATE":
                     activities.Add(
-                    new Activity("changed the due date", card.DueDate.ToString(), op.value.ToString()!, list!.Name, card.Name)
+                    new Activity("changed the due date", card.DueDate.ToString(), op.value.ToString()!, oldList!.Name, card.Name)
                     {
                         OperationDate = DateTime.UtcNow,
                         CardId = card.Id,
