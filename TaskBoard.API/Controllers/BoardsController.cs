@@ -137,15 +137,14 @@ public class BoardsController : ControllerBase
     ///     PATCH /Boards/{id}
     ///     [{
     ///         "operationType": 0,
-    ///         "path": null,
-    ///         "op": null,
-    ///         "from": null,
+    ///         "path": "Name",
+    ///         "op": "replace",
     ///         "value": null
     ///     }]
     /// </remarks>
     /// <param name="id">Board ID</param>
     /// <param name="patchDocument"></param>
-    /// <returns>Returns the created board</returns>
+    /// <returns>Returns the updated board</returns>
     /// <response code="204">Success</response>
     /// <response code="400">BadRequest</response>
     /// <response code="404">NotFound</response>
@@ -191,7 +190,7 @@ public class BoardsController : ControllerBase
     ///     DELETE /Boards/{id}
     /// </remarks>
     /// <param name="id">Board id</param>
-    /// <returns>Returns the created board</returns>
+    /// <returns>Returns 204 (No Content)</returns>
     /// <response code="204">Success</response>
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
