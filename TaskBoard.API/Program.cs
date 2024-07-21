@@ -1,3 +1,5 @@
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 using TaskBoard.API.DbContexts;
 using TaskBoard.API.Services;
 
@@ -11,7 +13,22 @@ builder.Services.AddControllers(options =>
 }).AddNewtonsoftJson();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+var info = new OpenApiInfo()
+{
+    Title = "TaskBoard API Documentation",
+    Version = "v1"
+
+};
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", info);
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});
 
 builder.Services.AddDbContext<TaskBoardContext>();
 
